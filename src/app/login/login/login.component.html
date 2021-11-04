@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="card">   
+        <h2 class="card-header">Login Account</h2>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    formControlName="username"
+                    [ngClass]="{ 'is-invalid': f.username.dirty && f.username.errors }"/>
+                    <div *ngIf="f.username.dirty && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.dirty && f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    formControlName="password"
+                    [ngClass]="{ 'is-invalid': f.password.dirty && f.password.errors }"/>
+                    <div *ngIf="f.password.dirty && f.password.errors" class="invalid-feedback">
+                        <div *ngIf=" f.username.dirty && f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+            </form>
+            <button type="submit" class="btn btn-dark" id="buttonBox1" form="loginForm">Login</button>
+            <button class="btn btn-light" id="buttonBox2" routerLink="/registration">Register</button>
+        </div>
+    </div>
+</div>
