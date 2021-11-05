@@ -1,0 +1,16 @@
+#selectBox {
+    width: 150px;
+    height: 40px;
+    
+}
+
+#viewAllButton {
+    width: 150px;
+    height: 40px;
+    margin-right: 10px;
+    
+}
+
+.filterBar {
+    float:left;
+}

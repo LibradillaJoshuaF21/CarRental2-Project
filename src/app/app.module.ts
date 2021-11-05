@@ -4,6 +4,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -28,6 +29,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

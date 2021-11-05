@@ -5,6 +5,16 @@ import { RegisterComponent } from './registration/register/register.component';
 
 const routes: Routes = [
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./user/user.module').then((m) => m.UserModule),
+  },
+  {
     path: 'registration',
     component: RegisterComponent,
   },
