@@ -9,7 +9,7 @@
       </ul>
       <br />
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Car Model</li>
+        <li class="list-group-item"></li>
         <li class="list-group-item">Car Brand</li>
         <li class="list-group-item">Car Type</li>
         <li class="list-group-item">Type of Transmission</li>
@@ -17,7 +17,7 @@
 
       <br />
 
-      <form [formGroup]="rentDetail" (ngSubmit)="onSubmit()">
+      <form [formGroup]="rentForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col">
             <div class="form-group">
@@ -72,7 +72,7 @@
       </button>
 
       <br />
-      <div class="result" >
+      <div class="card-text result" >
         <p id="result">Results here</p>
       </div>
     </div>

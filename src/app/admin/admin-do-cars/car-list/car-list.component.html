@@ -1,75 +1,99 @@
-<div class="container">   
-    <div class="row">
-        <div>
-            <button class="btn btn-dark filterBar" id="viewAllButton">View All</button>
-        </div>
-        <div class="col">
-            <select class="filterBar" id="selectBox">
-                <option disabled selected value style="display:none"> Brand </option>
-                <option>Toyota</option>
-                <option>Mitsubishi</option>
-                <option>Nissan</option>
-                <option>Honda</option>
-                <option>Isuzu</option>
-                <option>Hyundai</option>
-                <option>KIA</option>
-                <option>Ford</option>
-            </select>
-            <select class="filterBar" id="selectBox">
-                <option disabled selected value style="display:none"> Type </option>
-                <option>Sedan</option>
-                <option>SUV</option>
-                <option>Minivan</option>
-                <option>Hatchback</option>
-                <option>Pickup Truck</option>
-            </select>
-            <select class="filterBar" id="selectBox">
-                <option disabled selected value style="display:none"> Transmission </option>
-                <option>Manual</option>
-                <option>Automatic</option>
-            </select>
-            <select class="filterBar" id="selectBox">
-                <option disabled selected value style="display:none"> No. of Seats </option>
-                <option>2 - Seater</option>
-                <option>4 - Seater</option>
-                <option>7 - Seater</option>
-            </select>
-        </div>
+<div class="container">
+  <div class="row">
+    <div>
+      <button class="btn btn-dark filterBar" id="viewAllButton">
+        View All
+      </button>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-12 card"
-                *ngFor="let car of carList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
-                <div class="card-body">
-                    <div class="row justify-content-between">
-                        <div class="col-6">   
-                            <h5 class="card-title">
-                                {{car.model}}
-                                <span style="margin-left: 50px;">
-                                    <i class="bi bi-people-fill"></i>
-                                    {{car.seats}}
-                                </span>
-                            </h5>
-                            <p class="card-text">
-                                <span id="addMarginRight"><i class="bi bi-tag-fill" style="margin-right: 5px;"></i>{{car.brand}}</span>
-                                <span id="addMarginRight"><i class="bi bi-truck" style="margin-right: 5px;"></i>{{car.type}}</span>
-                                <span id="addMarginRight"><i class="bi bi-pin-map-fill" style="margin-right: 5px;"></i>{{car.transmission}}</span>
-                                <br>
-                                <br>
-                                <span><i class="bi bi-key-fill" style="margin-right: 5px;"></i>{{car.carID}}</span>
-                            </p>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(i)">Edit</button>
-                        </div>
-                    </div>
-                </div>
-        </div>
+    <div class="col">
+      <select class="filterBar" id="selectBox">
+        <option disabled selected value style="display: none">Brand</option>
+        <option>Toyota</option>
+        <option>Mitsubishi</option>
+        <option>Nissan</option>
+        <option>Honda</option>
+        <option>Isuzu</option>
+        <option>Hyundai</option>
+        <option>KIA</option>
+        <option>Ford</option>
+      </select>
+      <select class="filterBar" id="selectBox">
+        <option disabled selected value style="display: none">Type</option>
+        <option>Sedan</option>
+        <option>SUV</option>
+        <option>Minivan</option>
+        <option>Hatchback</option>
+        <option>Pickup Truck</option>
+      </select>
+      <select class="filterBar" id="selectBox">
+        <option disabled selected value style="display: none">
+          Transmission
+        </option>
+        <option>Manual</option>
+        <option>Automatic</option>
+      </select>
+      <select class="filterBar" id="selectBox">
+        <option disabled selected value style="display: none">
+          No. of Seats
+        </option>
+        <option>2 - Seater</option>
+        <option>4 - Seater</option>
+        <option>7 - Seater</option>
+      </select>
     </div>
-    <div class="row">
-        <div class="text-right">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  <br />
+  <div class="row">
+    <div
+      class="col-12 card"
+      *ngFor="
+        let car of carList | paginate: { itemsPerPage: count, currentPage: p };
+        index as i
+      "
+    >
+      <div class="card-body">
+        <div class="row justify-content-between">
+          <div class="col-6">
+            <h5 class="card-title">
+              {{ car.model }}
+              <span style="margin-left: 50px">
+                <i class="bi bi-people-fill"></i>
+                {{ car.seats }}
+              </span>
+            </h5>
+            <p class="card-text">
+              <span id="addMarginRight"
+                ><i class="bi bi-tag-fill" style="margin-right: 5px"></i
+                >{{ car.brand }}</span
+              >
+              <span id="addMarginRight"
+                ><i class="bi bi-truck" style="margin-right: 5px"></i
+                >{{ car.type }}</span
+              >
+              <span id="addMarginRight"
+                ><i class="bi bi-pin-map-fill" style="margin-right: 5px"></i
+                >{{ car.transmission }}</span
+              >
+              <br />
+              <br />
+              <span
+                ><i class="bi bi-key-fill" style="margin-right: 5px"></i
+                >{{ car.carID }}</span
+              >
+            </p>
+          </div>
+          <div class="col-2">
+            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(i)">
+              Edit
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-    
+  </div>
+  <div class="row">
+    <div class="text-right">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
 </div>
