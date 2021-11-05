@@ -1,6 +1,9 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Car } from 'src/app/shared/car/car';
+import { Rental } from 'src/app/shared/rental/rental';
+import { RentalsService } from 'src/app/shared/rental/rentals.service';
+
 
 @Component({
   selector: 'app-rent-form',
@@ -10,8 +13,12 @@ import { Car } from 'src/app/shared/car/car';
 export class RentFormComponent implements OnInit {
 
   @Input('sendCarInfo') car!: Car;
+  @Output() rentStatus = new EventEmitter<boolean>();
+
+  result = "Results Here";
  
   rentForm = this.fb.group({
+
     uFirstName: ['', {
       validators: [Validators.required],
     }],
@@ -42,18 +49,17 @@ export class RentFormComponent implements OnInit {
     cSeats: ['', {
       validators: [Validators.required],
     }],
-    startDate:['', {
+    rStartDate:['', {
       validators: [Validators.required],
     }],
-    endDate:['', {
+    rEndDate:['', {
       validators: [Validators.required],
     }],
-
   })
     
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private rservice: RentalsService) { }
 
   ngOnInit(): void {
     this.rentForm = this.fb.group({
@@ -62,13 +68,44 @@ export class RentFormComponent implements OnInit {
       cType: [this.car.type, Validators.required],
       cTransmission: [this.car.transmission, Validators.required],
       cSeats: [this.car.seats, Validators.required],
-
+      rStartDate:[''],
+      rEndDate:[''],
     });
   }
 
   get f(){return this.rentForm.controls}
 
+  ngOnChanges(){
+    this.rentForm = this.fb.group({
+      cModel: [this.car.model, Validators.required],
+      cBrand: [this.car.brand, Validators.required],
+      cType: [this.car.type, Validators.required],
+      cTransmission: [this.car.transmission, Validators.required],
+      cSeats: [this.car.seats, Validators.required],
+      rStartDate:[''],
+      rEndDate:[''],
+  });
+}
+
+
   onSubmit(){
+
+    const payload: Rental = {
+      rentID: '',
+      firstName: '',
+      lastName:'',
+      address: '',
+      email: '',
+      contactNumber: 0,
+      carID: this.car.carID,
+      carType: this.car.type,
+      rentStartDate: this.f.rStartDate.value,
+      rentEndDate: this.f.rEndDate.value,
+    };
+    this.rservice.addRent(payload);
+    this.rentStatus.emit(false);
+
+
     console.log(this.f.startDate.value);
     console.log(this.f.carName.value);
   }

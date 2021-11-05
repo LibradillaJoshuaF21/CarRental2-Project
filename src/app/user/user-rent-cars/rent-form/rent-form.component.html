@@ -9,36 +9,26 @@
       </ul>
       <br />
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"></li>
-        <li class="list-group-item">Car Brand</li>
-        <li class="list-group-item">Car Type</li>
-        <li class="list-group-item">Type of Transmission</li>
+        <li class="list-group-item">{{f.cModel.value}}</li>
+        <li class="list-group-item">{{f.cBrand.value}}</li>
+        <li class="list-group-item">{{f.cType.value}}</li>
+        <li class="list-group-item">{{f.cTransmission.value}}</li>
+        <li class="list-group-item">{{f.cSeats.value}}</li>
       </ul>
 
       <br />
 
-      <form [formGroup]="rentForm" (ngSubmit)="onSubmit()">
+      <form id="rentForm" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col">
             <div class="form-group">
               <label for="date">Start Date</label>
               <input
-                type="date"
+                type="text"
                 class="form-control"
-                name="startDate"
-                formControlName="startDate"
-                [ngClass]="{
-                  'is-invalid': f.startDate.dirty && f.startDate.errors
-                }"
+                name="rStartDate"
+                formControlName="rStartDate"
               />
-              <div
-                *ngIf="f.startDate.dirty && f.startDate.errors"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.startDate.dirty && f.startDate.errors.required">
-                  Start Date is required
-                </div>
-              </div>
             </div>
           </div>
 
@@ -46,34 +36,23 @@
             <div class="form-group">
               <label for="date">End Date</label>
               <input
-                type="date"
+                type="text"
                 class="form-control"
-                name="endDate"
-                formControlName="endDate"
-                [ngClass]="{
-                  'is-invalid': f.endDate.dirty && f.endDate.errors
-                }"
+                name="rEndDate"
+                formControlName="rEndDate"
               />
-              <div
-                *ngIf="f.endDate.dirty && f.endDate.errors"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.endDate.dirty && f.endDate.errors.required">
-                  End Date is required
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </form>
 
-      <button class="btn btn-dark" form="rentDetail" id="buttonBox1">
+      <button class="btn btn-dark" form="rentForm" id="buttonBox1">
         Rent
       </button>
 
       <br />
       <div class="card-text result" >
-        <p id="result">Results here</p>
+        <p id="result">{{result}}</p>
       </div>
     </div>
   </div>

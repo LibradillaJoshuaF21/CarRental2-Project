@@ -7,7 +7,8 @@
     </div>
     <div *ngIf="renting">
         <app-rent-form
-            
+            [sendCarInfo]="carList[rentCarIndex]"
+            (rentStatus)="rentComplete($event)"
         ></app-rent-form>
     </div>
 </div>
