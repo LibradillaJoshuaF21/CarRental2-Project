@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="card">   
+        <h2 class="card-header">Add User Account</h2>
+        <div class="card-body">
+            <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()" id="addUserForm">
+                <div class="form-group">
+                    <label for="uname">Username</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="uname"
+                    formControlName="uname"
+                    [ngClass]="{ 'is-invalid': f.uname.errors && f.uname.dirty}"/>
+                    <div *ngIf="f.uname.errors && f.uname.dirty" class="invalid-feedback">
+                        <div *ngIf="f.uname.errors.required && f.uname.dirty">Username is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fname">First Name</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="fname"
+                    formControlName="fname"
+                    [ngClass]="{ 'is-invalid': f.fname.errors && f.fname.dirty }"/>
+                    <div *ngIf="f.fname.errors && f.fname.dirty" class="invalid-feedback">
+                        <div *ngIf="f.fname.errors.required && f.fname.dirty">First Name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="lname"
+                    formControlName="lname"
+                    [ngClass]="{ 'is-invalid': f.lname.errors && f.lname.dirty }"/>
+                    <div *ngIf="f.lname.errors && f.lname.dirty" class="invalid-feedback">
+                        <div *ngIf="f.lname.errors.required && f.lname.dirty">Last Name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="address"
+                    formControlName="address"
+                    [ngClass]="{ 'is-invalid': f.address.errors && f.address.dirty }"/>
+                    <div *ngIf="f.address.errors && f.address.dirty" class="invalid-feedback">
+                        <div *ngIf="f.address.errors.required && f.address.dirty">Address is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    formControlName="email"
+                    [ngClass]="{ 'is-invalid': f.email.errors && f.email.dirty }"/>
+                    <div *ngIf="f.email.errors && f.email.dirty" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required && f.email.dirty">Email Address is required</div>
+                        <div *ngIf="f.email.errors.email && f.email.dirty">Entry must be an email</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactnum">Contact Number</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="contactnum"
+                    formControlName="contactnum"
+                    [ngClass]="{ 'is-invalid': f.contactnum.errors && f.contactnum.dirty}"/>
+                    <div *ngIf="f.contactnum.errors && f.contactnum.dirty" class="invalid-feedback">
+                        <div *ngIf="f.contactnum.errors.required && f.contactnum.dirty">Contact Number is required</div>
+                        <div *ngIf="f.contactnum.errors.pattern && f.contactnum.dirty">Contact Number must only contain numbers</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rpassword">Password</label>
+                    <input
+                    type="password"
+                    class="form-control"
+                    name="rpassword"
+                    formControlName="rpassword"
+                    [ngClass]="{ 'is-invalid': f.rpassword.errors && f.rpassword.dirty}"/>
+                    <div *ngIf="f.rpassword.errors && f.rpassword.dirty" class="invalid-feedback">
+                        <div *ngIf="f.rpassword.errors.required && f.rpassword.dirty">Password is required</div>
+                        <div *ngIf="f.rpassword.errors.minlength && f.rpassword.dirty">Password must be 6 characters</div>
+                    </div>
+                </div>
+
+            </form>
+            <button class="btn btn-dark" form="addUserForm" id="userAddButtonBox1" [disabled]="!addUserForm.valid">Add</button>
+            <button class="btn btn-light" id="userAddButtonBox2" routerLink="/login">Cancel</button>
+            <div *ngIf="isDuplicate"><span style="color:red">THERE IS AN IMPOSTER ALREADY!</span></div>
+        </div>
+    </div>
+</div>
