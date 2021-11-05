@@ -1,0 +1,80 @@
+<div class="container rentForm">
+  <div class="card">
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Renter Name</li>
+        <li class="list-group-item">Address</li>
+        <li class="list-group-item">Email</li>
+        <li class="list-group-item">Contact Number</li>
+      </ul>
+      <br />
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Car Model</li>
+        <li class="list-group-item">Car Brand</li>
+        <li class="list-group-item">Car Type</li>
+        <li class="list-group-item">Type of Transmission</li>
+      </ul>
+
+      <br />
+
+      <form [formGroup]="rentDetail" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="date">Start Date</label>
+              <input
+                type="date"
+                class="form-control"
+                name="startDate"
+                formControlName="startDate"
+                [ngClass]="{
+                  'is-invalid': f.startDate.dirty && f.startDate.errors
+                }"
+              />
+              <div
+                *ngIf="f.startDate.dirty && f.startDate.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.startDate.dirty && f.startDate.errors.required">
+                  Start Date is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <label for="date">End Date</label>
+              <input
+                type="date"
+                class="form-control"
+                name="endDate"
+                formControlName="endDate"
+                [ngClass]="{
+                  'is-invalid': f.endDate.dirty && f.endDate.errors
+                }"
+              />
+              <div
+                *ngIf="f.endDate.dirty && f.endDate.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.endDate.dirty && f.endDate.errors.required">
+                  End Date is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <button class="btn btn-dark" form="rentDetail" id="buttonBox1">
+        Rent
+      </button>
+
+      <br />
+      <div class="result" >
+        <p id="result">Results here</p>
+      </div>
+    </div>
+  </div>
+</div>
