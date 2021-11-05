@@ -1,31 +1,29 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { CarsService } from 'src/app/shared/car/cars.service';
 
 @Component({
-  selector: 'app-car-list',
-  templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.css']
+  selector: 'app-rent-car-list',
+  templateUrl: './rent-car-list.component.html',
+  styleUrls: ['./rent-car-list.component.css']
 })
-export class CarListComponent implements OnInit {
+export class RentCarListComponent implements OnInit {
 
   @Input('sendCarList') carList: any;
   @Output() selectedCar = new EventEmitter<number>();
 
   displayList = [] as any;
-  
+
   p: number = 1;
   count: number = 4;
 
-  constructor(private cservice: CarsService) {
-    
-   }
+  constructor(private cservice: CarsService) {}
+  
 
   ngOnInit(): void {
-
-    
+    this.displayList = this.carList;
   }
 
-  onEdit(i: number){
+  onRent(i: number){
     this.selectedCar.emit(i);
   }
 

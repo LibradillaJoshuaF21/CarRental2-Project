@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="col-9">
+        <app-rent-car-list
+             [sendCarList]="carList"
+             (selectedCar)="onRent($event)"
+        ></app-rent-car-list>
+    </div>
+    <div *ngIf="renting">
+        <app-rent-form
+            [sendCarInfo]="carList[rentCarIndex]"
+            (rentStatus)="rentComplete($event)"
+        ></app-rent-form>
+    </div>
+</div>
