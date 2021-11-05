@@ -16,6 +16,8 @@ export class RentFormComponent implements OnInit {
   @Output() rentStatus = new EventEmitter<boolean>();
 
   result = "Results Here";
+
+  sent = false;
  
   rentForm = this.fb.group({
 
@@ -63,6 +65,11 @@ export class RentFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.rentForm = this.fb.group({
+      uFirstName: [''],
+      uLastName:[''],
+      uAddress:[''],
+      uEmail:[''],
+      uContactNum: [''],
       cModel: [this.car.model, Validators.required],
       cBrand: [this.car.brand, Validators.required],
       cType: [this.car.type, Validators.required],
@@ -77,6 +84,11 @@ export class RentFormComponent implements OnInit {
 
   ngOnChanges(){
     this.rentForm = this.fb.group({
+      uFirstName: [''],
+      uLastName:[''],
+      uAddress:[''],
+      uEmail:[''],
+      uContactNum: [''],
       cModel: [this.car.model, Validators.required],
       cBrand: [this.car.brand, Validators.required],
       cType: [this.car.type, Validators.required],
@@ -105,8 +117,6 @@ export class RentFormComponent implements OnInit {
     this.rservice.addRent(payload);
     this.rentStatus.emit(false);
 
-
-    console.log(this.f.startDate.value);
-    console.log(this.f.carName.value);
+    this.sent = true;
   }
 }

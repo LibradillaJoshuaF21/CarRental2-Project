@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
       <div>
-        <button class="btn btn-dark filterBar" id="viewAllButton">
+        <button class="btn btn-dark filterBar" id="viewAllButton" (click)="displayAll()">
           View All
         </button>
       </div>
       <div class="col">
-        <select class="filterBar" id="selectBox">
+        <select class="filterBar" id="selectBox" (change)="onChangeBrand($event)">
           <option disabled selected value style="display: none">Brand</option>
           <option>Toyota</option>
           <option>Mitsubishi</option>
@@ -17,7 +17,7 @@
           <option>KIA</option>
           <option>Ford</option>
         </select>
-        <select class="filterBar" id="selectBox">
+        <select class="filterBar" id="selectBox" (change)="onChangeType($event)">
           <option disabled selected value style="display: none">Type</option>
           <option>Sedan</option>
           <option>SUV</option>
@@ -25,14 +25,14 @@
           <option>Hatchback</option>
           <option>Pickup Truck</option>
         </select>
-        <select class="filterBar" id="selectBox">
+        <select class="filterBar" id="selectBox" (change)="onChangeTransmission($event)">
           <option disabled selected value style="display: none">
             Transmission
           </option>
           <option>Manual</option>
           <option>Automatic</option>
         </select>
-        <select class="filterBar" id="selectBox">
+        <select class="filterBar" id="selectBox" (change)="onChangeSeats($event)">
           <option disabled selected value style="display: none">
             No. of Seats
           </option>
@@ -47,7 +47,7 @@
       <div
         class="col-12 card"
         *ngFor="
-          let car of carList | paginate: { itemsPerPage: count, currentPage: p };
+          let car of displayList | paginate: { itemsPerPage: count, currentPage: p };
           index as i
         "
       >
@@ -76,10 +76,6 @@
                 >
                 <br />
                 <br />
-                <span
-                  ><i class="bi bi-key-fill" style="margin-right: 5px"></i
-                  >{{ car.carID }}</span
-                >
               </p>
             </div>
             <div class="col-2">

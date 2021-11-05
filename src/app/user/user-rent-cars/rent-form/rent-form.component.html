@@ -13,7 +13,7 @@
         <li class="list-group-item">{{f.cBrand.value}}</li>
         <li class="list-group-item">{{f.cType.value}}</li>
         <li class="list-group-item">{{f.cTransmission.value}}</li>
-        <li class="list-group-item">{{f.cSeats.value}}</li>
+        <li class="list-group-item">{{f.cSeats.value + " Seats"}}</li>
       </ul>
 
       <br />
@@ -24,7 +24,7 @@
             <div class="form-group">
               <label for="date">Start Date</label>
               <input
-                type="text"
+                type="date"
                 class="form-control"
                 name="rStartDate"
                 formControlName="rStartDate"
@@ -36,7 +36,7 @@
             <div class="form-group">
               <label for="date">End Date</label>
               <input
-                type="text"
+                type="date"
                 class="form-control"
                 name="rEndDate"
                 formControlName="rEndDate"
@@ -46,12 +46,12 @@
         </div>
       </form>
 
-      <button class="btn btn-dark" form="rentForm" id="buttonBox1">
+      <button class="btn btn-dark" form="rentForm" id="buttonBox1" >
         Rent
       </button>
 
       <br />
-      <div class="card-text result" >
+      <div *ngIf="sent" class="card-text result" >
         <p id="result">{{result}}</p>
       </div>
     </div>
