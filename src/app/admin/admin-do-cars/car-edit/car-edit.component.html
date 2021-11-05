@@ -1,0 +1,142 @@
+<div class="container">
+    <div class="card">   
+        <h2 class="card-header">Edit (Car ID)</h2>
+        <div class="card-body">
+            <form [formGroup]="editCarForm" (ngSubmit)="onSubmit()" id="editCarForm">
+                <div class="form-group">
+                    <label for="cmodel">Car Model</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="cmodel"
+                    formControlName="cmodel"
+                    [ngClass]="{ 'is-invalid': f.cmodel.dirty && f.cmodel.errors }"/>
+                    <div *ngIf="f.cmodel.dirty && f.cmodel.errors" class="invalid-feedback">
+                        <div *ngIf="f.cmodel.dirty && f.cmodel.errors.required">Car Model is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cbrand">Car Brand</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="cbrand"
+                    formControlName="cbrand"
+                    [ngClass]="{ 'is-invalid': f.cmodel.dirty && f.cbrand.errors }"/>
+                    <div *ngIf="f.cmodel.dirty && f.cbrand.errors" class="invalid-feedback">
+                        <div *ngIf="f.cmodel.dirty && f.cbrand.errors.required">Car Brand is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ctype">Vehicle Type</label>
+                    <div>
+                        <input
+                        type="radio"
+                        value="Sedan"
+                        name="ctype"
+                        formControlName="ctype"/>
+                        <label for="sedan">Sedan</label>
+                    </div>
+                    <div>
+                        <input
+                        type="radio"
+                        value="SUV"
+                        name="ctype"
+                        formControlName="ctype"/>
+                        <label for="sedan">SUV</label>
+                    </div>
+                    <div>
+                        <input
+                        type="radio"
+                        value="Minivan"
+                        name="ctype"
+                        formControlName="ctype"/>
+                        <label for="minivan">Minivan</label>
+                    </div>
+                    <div>
+                        <input
+                        type="radio"
+                        value="Pickup"
+                        name="ctype"
+                        formControlName="ctype"/>
+                        <label for="pickup">Pickup Truck</label>
+                    </div>
+                    <div>
+                        <input
+                        type="radio"
+                        value="Hatchback"
+                        name="ctype"
+                        formControlName="ctype"/>
+                        <label for="hatchback">Hatchback</label>
+                        <div *ngIf="f.cmodel.dirty && f.ctype.errors" class="invalid-feedback">
+                            <div *ngIf="f.cmodel.dirty && f.ctype.errors.required">Transmission is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="transmission">Transmission</label>
+                    <div>
+                        <input
+                        type="radio"
+                        value="Manual"
+                        name="transmission"
+                        formControlName="transmission"/>
+                        <label for="manual">Manual</label>
+                    </div>
+                    <div>
+                        <input
+                        type="radio"
+                        value="Automatic"
+                        name="transmission"
+                        formControlName="transmission"/>
+                        <label for="automatic">Automatic</label>
+                        <div *ngIf="f.cmodel.dirty && f.transmission.errors" class="invalid-feedback">
+                            <div *ngIf="f.cmodel.dirty && f.transmission.errors.required">Transmission is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="seats">Number of Seats</label>
+                    <div>
+                        <input
+                        type="radio"
+                        value="2"
+                        name="seats"
+                        formControlName="seats"/>
+                        <label for="twoseats">2 - Seater</label>
+                    </div>
+                    <div>
+                        <input
+                        type="radio"
+                        value="4"
+                        name="seats"
+                        formControlName="seats"/>
+                        <label for="fourseats">4 - Seater</label>
+                    </div>
+                    <div>
+                        <input
+                        type="radio"
+                        value="7"
+                        name="seats"
+                        formControlName="seats"/>
+                        <label for="sevenseats">7 - Seater</label>
+                        <div *ngIf="f.cmodel.dirty && f.seats.errors" class="invalid-feedback">
+                            <div *ngIf="f.cmodel.dirty && f.seats.errors.required">Number of seats is required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <button class="btn btn-dark" form="editCarForm" id="carsEditButtonBox1" [disabled]="!editCarForm.valid">Edit</button>
+            <button class="btn btn-light" id="carsEditButtonBox2" (click)="stopEditing()">Cancel</button>
+            <hr>
+            <div>
+                <app-car-delete [sendCarID]="car.carID" (editStatus)="passEditStatus($event)"></app-car-delete>
+            </div>
+        </div>
+    </div>
+</div>

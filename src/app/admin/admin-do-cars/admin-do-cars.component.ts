@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarsService } from 'src/app/shared/car/cars.service';
 
 @Component({
   selector: 'app-admin-do-cars',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDoCarsComponent implements OnInit {
 
-  constructor() { }
+  carList = [] as any;
+  editing = false;
+  editCarIndex!: number;
+
+  constructor(private cservice: CarsService) { }
 
   ngOnInit(): void {
+    this.cservice.getCar().subscribe((val) => {
+      this.carList = val;
+    });
+  }
+
+  onEdit(index: any) {
+    this.editing = true;
+    this.editCarIndex = index;
+  }
+
+  editComplete(value: any){
+    this.editing = value;
+    this.editCarIndex = null as any;
   }
 
 }
