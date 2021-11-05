@@ -1,45 +1,45 @@
 <div class="container">   
     <div class="row">
         <div>
-            <button class="btn btn-dark filterBar" id="viewAllButton">View All</button>
+            <button class="btn btn-dark filterBar" id="viewAllButton" (click)="displayAll()">View All</button>
         </div>
         <div class="col">
-            <select class="filterBar" id="selectBox">
+            <select class="filterBar" id="selectBox" (change)="onChangeBrand($event)">
                 <option disabled selected value style="display:none"> Brand </option>
-                <option>Toyota</option>
-                <option>Mitsubishi</option>
-                <option>Nissan</option>
-                <option>Honda</option>
-                <option>Isuzu</option>
-                <option>Hyundai</option>
-                <option>KIA</option>
-                <option>Ford</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Honda">Honda</option>
+                <option value="Isuzu">Isuzu</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="KIA">KIA</option>
+                <option value="Ford">Ford</option>
             </select>
-            <select class="filterBar" id="selectBox">
+            <select class="filterBar" id="selectBox" (change)="onChangeType($event)">
                 <option disabled selected value style="display:none"> Type </option>
-                <option>Sedan</option>
-                <option>SUV</option>
-                <option>Minivan</option>
-                <option>Hatchback</option>
-                <option>Pickup Truck</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Minivan">Minivan</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Pickup Truck">Pickup Truck</option>
             </select>
-            <select class="filterBar" id="selectBox">
+            <select class="filterBar" id="selectBox" (change)="onChangeTransmission($event)">
                 <option disabled selected value style="display:none"> Transmission </option>
-                <option>Manual</option>
-                <option>Automatic</option>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
             </select>
-            <select class="filterBar" id="selectBox">
+            <select class="filterBar" id="selectBox" (change)="onChangeSeats($event)">
                 <option disabled selected value style="display:none"> No. of Seats </option>
-                <option>2 - Seater</option>
-                <option>4 - Seater</option>
-                <option>7 - Seater</option>
+                <option value="2">2 - Seater</option>
+                <option value="4">4 - Seater</option>
+                <option value="7">7 - Seater</option>   
             </select>
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col-12 card"
-                *ngFor="let car of carList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
+                *ngFor="let car of displayList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
                 <div class="card-body">
                     <div class="row justify-content-between">
                         <div class="col-6">   

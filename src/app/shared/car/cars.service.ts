@@ -36,4 +36,20 @@ export class CarsService {
   removeCar(carID: string,){
     this.carCollection.doc(carID).delete();
   }
+
+  sortByBrand(carBrand: string, carList: Car []){
+    return carList.filter( car => car.brand === carBrand)
+  }
+
+  sortByType(carType: string, carList: Car []){
+    return carList.filter( car => car.type === carType)
+  }
+
+  sortByTransmission(carTransmission: string, carList: Car []){
+    return carList.filter( car => car.transmission === carTransmission)
+  }
+
+  sortBySeats(carSeats: number, carList: Car []){
+    return carList.filter( car => car.seats === carSeats)
+  }
 }
