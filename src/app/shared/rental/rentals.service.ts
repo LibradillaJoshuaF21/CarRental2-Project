@@ -12,35 +12,32 @@ import { Observable } from 'rxjs';
 export class RentalsService {
 
   private rentCollection: AngularFirestoreCollection<Rental>;
-  rent!: Observable<Rental[]>;
+  rents!: Observable<Rental[]>;
 
   constructor(private afs: AngularFirestore) { 
-    this.rentCollection = this.afs.collection<Rental>('Rents');
-    this.rent = this.rentCollection.valueChanges();
+    this.rentCollection = this.afs.collection<Rental>('Rentals');
+    this.rents = this.rentCollection.valueChanges();
   }
 
-  addRent(rent: Rental){
+  addRental(rental: Rental){
     const pushkey = this.afs.createId();
-    rent.rentID = pushkey;
-    this.afs.doc(pushkey).set(rent);
+    rental.rentalID = pushkey;
+    this.rentCollection.doc(pushkey).set(rental);
   }
 
-  getRentList(){
-    return this.rent;
+  getRentalList(){
+    return this.rents;
   }
 
-  removeRent(rentID: string,){
+  removeRental(rentID: string,){
     this.rentCollection.doc(rentID).delete();
   }
 
-  checkRentList(cardID: string){ // NOT WORKING, RETURNs UNDEFINED
-    this.rent.subscribe(something => something.forEach( something2 =>{
-      if(something2.carID == cardID){
-        return false;
-      }
-      else {
-        return true;
-      }
-    }))
+  sortRentList(rentalList: Rental[]){
+    return rentalList.filter( rental => rental.rentStatus === true)
+  }
+
+  sortReservationList(rentalList: Rental[]){
+    return rentalList.filter( rental => rental.rentStatus === false)
   }
 }

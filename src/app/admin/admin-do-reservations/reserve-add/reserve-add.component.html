@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="card">   
+        <h2 class="card-header">Add User Account</h2>
+        <div class="card-body">
+            <form [formGroup]="addReserveForm" (ngSubmit)="onSubmit()" id="addReserveForm">
+                <div class="form-group">
+                    <label for="userEmail">User Email</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="userEmail"
+                    formControlName="userEmail"
+                    [ngClass]="{ 'is-invalid': f.userEmail.errors && f.userEmail.dirty}"/>
+                    <div *ngIf="f.userEmail.errors && f.userEmail.dirty" class="invalid-feedback">
+                        <div *ngIf="f.userEmail.errors.required && f.userEmail.dirty">User Email is required</div>
+                        <div *ngIf="f.userEmail.errors.email && f.userEmail.dirty">Use a valid email</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="selectedCar">Select Car</label>
+                    <div>
+                        <select formControlName="selectedCar" name="selectedCar">
+                            <option disabled selected value style="display:none">Available Cars</option>
+                            <option *ngFor="let car of availableCarList"[ngValue]="car.carID">{{car.model + " | " + car.brand + " | " + car.type + " | " + car.transmission + " | " + car.seats}}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="selectedCar">Start Date</label>
+                    <div>
+                        <input
+                        type="date"
+                        name="rStartDate"
+                        formControlName="rStartDate"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="selectedCar">End Date</label>
+                    <div>
+                        <input
+                        type="date"
+                        name="rEndDate"
+                        formControlName="rEndDate"/>
+                    </div>
+                </div>
+
+            </form>
+            <button class="btn btn-dark" form="addReserveForm" id="userAddButtonBox1" >Add</button>
+            <button class="btn btn-light" id="userAddButtonBox2" routerLink="/login">Cancel</button>
+        </div>
+    </div>
+</div>

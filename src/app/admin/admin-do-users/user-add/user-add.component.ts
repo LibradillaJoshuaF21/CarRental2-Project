@@ -14,9 +14,6 @@ export class UserAddComponent implements OnInit {
   isDuplicate = false;
 
   addUserForm = this.fb.group({
-    uname: ['',{
-      validators: [Validators.required],
-    }],
     fname: ['',{
       validators: [Validators.required],
     }],
@@ -46,10 +43,9 @@ export class UserAddComponent implements OnInit {
   }
 
   onSubmit(){
-    if(!(this.uservice.checkDuplicate(this.f.uname.value, this.userList))){
+    if(!(this.uservice.checkDuplicate(this.f.email.value, this.userList))){
       const payload: User = {
         userID: '',
-        username: this.f.uname.value,
         firstName: this.f.fname.value,
         lastName: this.f.lname.value,
         address: this.f.address.value,

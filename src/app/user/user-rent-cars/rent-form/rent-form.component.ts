@@ -103,18 +103,18 @@ export class RentFormComponent implements OnInit {
   onSubmit(){
 
     const payload: Rental = {
-      rentID: '',
+      rentalID: '',
       firstName: '',
       lastName:'',
       address: '',
       email: '',
       contactNumber: 0,
       carID: this.car.carID,
-      carType: this.car.type,
       rentStartDate: this.f.rStartDate.value,
       rentEndDate: this.f.rEndDate.value,
+      rentStatus: false,
     };
-    this.rservice.addRent(payload);
+    this.rservice.addRental(payload);
     this.rentStatus.emit(false);
 
     this.sent = true;

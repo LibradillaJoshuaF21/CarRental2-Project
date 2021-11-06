@@ -13,14 +13,18 @@ export class UserEditComponent implements OnInit {
   @Input('sendUserInfo') user!: User;
   @Output() editStatus = new EventEmitter<boolean>();
 
+  userList = [] as any;
   editUserForm!: FormGroup;
+  isDuplicate = false;
 
   constructor(private fb: FormBuilder, private uservice: UsersService) { }
 
   ngOnInit(): void {
+    this.uservice.getUser().subscribe((val) => {
+      this.userList = val;
+    });
     this.editUserForm = this.fb.group({
       userID: [this.user.userID],
-      uname: [this.user.username, Validators.required],
       fname: [this.user.firstName, Validators.required],
       lname: [this.user.lastName, Validators.required],
       address: [this.user.address, Validators.required],
@@ -39,7 +43,6 @@ export class UserEditComponent implements OnInit {
   ngOnChanges(): void {
     this.editUserForm = this.fb.group({
       userID: [this.user.userID],
-      uname: [this.user.username, Validators.required],
       fname: [this.user.firstName, Validators.required],
       lname: [this.user.lastName, Validators.required],
       address: [this.user.address, Validators.required],
@@ -56,9 +59,9 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit(){
+    if(!(this.uservice.checkDuplicate(this.f.email.value, this.userList))){
       const payload: User = {
         userID: this.user.userID,
-        username: this.f.uname.value,
         firstName: this.f.fname.value,
         lastName: this.f.lname.value,
         address: this.f.address.value,
@@ -68,6 +71,10 @@ export class UserEditComponent implements OnInit {
       };
       this.uservice.modifyUser(this.user.userID, payload);
       this.editUserForm.reset();
+    }
+    else {
+      this.isDuplicate = true;
+    }
   }
 
   stopEditing(){

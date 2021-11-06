@@ -15,6 +15,11 @@ import { UserAddComponent } from './admin-do-users/user-add/user-add.component';
 import { UserDeleteComponent } from './admin-do-users/user-delete/user-delete.component';
 import { UserEditComponent } from './admin-do-users/user-edit/user-edit.component';
 import { UserListComponent } from './admin-do-users/user-list/user-list.component';
+import { AdminDoReservationsComponent } from './admin-do-reservations/admin-do-reservations.component';
+import { ReserveListComponent } from './admin-do-reservations/reserve-list/reserve-list.component';
+import { ReserveAddComponent } from './admin-do-reservations/reserve-add/reserve-add.component';
+import { ReserveDeleteComponent } from './admin-do-reservations/reserve-delete/reserve-delete.component';
+import { ReserveDetailComponent } from './admin-do-reservations/reserve-detail/reserve-detail.component';
 
 
 @NgModule({
@@ -29,7 +34,12 @@ import { UserListComponent } from './admin-do-users/user-list/user-list.componen
     UserAddComponent,
     UserDeleteComponent,
     UserEditComponent,
-    UserListComponent
+    UserListComponent,
+    AdminDoReservationsComponent,
+    ReserveListComponent,
+    ReserveAddComponent,
+    ReserveDeleteComponent,
+    ReserveDetailComponent
   ],
   imports: [
     CommonModule,

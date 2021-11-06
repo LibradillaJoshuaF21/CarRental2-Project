@@ -14,9 +14,6 @@ export class RegisterComponent implements OnInit {
   isDuplicate = false;
 
   addUserForm = this.fb.group({
-    uname: ['',{
-      validators: [Validators.required],
-    }],
     fname: ['',{
       validators: [Validators.required],
     }],
@@ -49,7 +46,6 @@ export class RegisterComponent implements OnInit {
     if(!(this.uservice.checkDuplicate(this.f.uname.value, this.userList))){
       const payload: User = {
         userID: '',
-        username: this.f.uname.value,
         firstName: this.f.fname.value,
         lastName: this.f.lname.value,
         address: this.f.address.value,

@@ -37,7 +37,7 @@ export class UsersService {
     this.userCollection.doc(userID).delete();
   }
 
-  checkDuplicate(username: string, userList: User[]){
-    return userList.some( user => user.username === username)
+  checkDuplicate(email: string, userList: User[]){
+    return userList.some( user => user.email === email)
   }
 }
