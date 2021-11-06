@@ -1,3 +1,8 @@
+#selectBox {
+    width: 150px;
+    height: 40px;
+    
+}
 
 #viewAllButton {
     width: 150px;
@@ -17,7 +22,5 @@
 }
 
 .filterBar {
-    width: 150px;
-    height: 40px;
     float:left;
 }

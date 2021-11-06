@@ -1,0 +1,45 @@
+<div class="container">   
+    <div class="row">
+        <div class="col-12 card"
+                *ngFor="let user of userList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
+                <div class="card-body">
+                    <div class="row justify-content-between">
+                        <div class="col-8">   
+                            <h5 class="card-title">
+                                <span style="margin-right: 10px;">
+                                    <i class="bi bi-person-badge-fill"></i>
+                                </span>
+                                {{user.username}}
+                                <span style="margin-left: 10px;">
+                                    <i class="bi bi-person-circle"></i>
+                                </span>
+                                {{user.firstName + " " + user.lastName}}
+                            </h5>
+                            <p class="card-text">
+                                <span id="addMarginRight"><i class="bi bi-house-fill" style="margin-right: 5px;"></i>{{user.address}}</span>
+                            </p>
+                            <p>
+                                <span id="addMarginRight"><i class="bi bi-at" style="margin-right: 5px;"></i>{{user.email}}</span>
+                                <span id="addMarginRight"><i class="bi bi-telephone-fill" style="margin-right: 5px;"></i>{{user.contactNumber}}</span>
+                            </p>
+                            <p>
+                                <span><i class="bi bi-key-fill" style="margin-right: 5px;"></i>{{user.userID}}</span>
+                            </p>
+                            <p>
+                                <span><i class="bi bi-shield-lock-fill" style="margin-right: 5px;"></i>{{user.password}}</span>
+                            </p>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(i)">Edit</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+    
+</div>

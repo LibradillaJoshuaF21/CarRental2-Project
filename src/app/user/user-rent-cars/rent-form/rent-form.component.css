@@ -19,3 +19,8 @@
     text-align:center;
     background-color: bisque;
 }
+
+.card-header {
+    background-color: black;
+    color: white;
+}
