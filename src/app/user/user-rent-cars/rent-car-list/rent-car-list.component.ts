@@ -46,4 +46,5 @@ export class RentCarListComponent implements OnInit {
   displayAll(){
     this.displayList = this.carList;
   }
+
 }

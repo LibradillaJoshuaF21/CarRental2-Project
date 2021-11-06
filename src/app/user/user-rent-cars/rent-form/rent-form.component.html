@@ -1,23 +1,37 @@
-<div class="container rentForm">
+<div class="container">
+  <div>
   <div class="card">
     <div class="card-body">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Renter Name</li>
-        <li class="list-group-item">Address</li>
-        <li class="list-group-item">Email</li>
-        <li class="list-group-item">Contact Number</li>
-      </ul>
+      <div class="card">
+        <h4 class="card-header">Renter Information</h4>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Renter Name</li>
+            <li class="list-group-item">Address</li>
+            <li class="list-group-item">Email</li>
+            <li class="list-group-item">Contact Number</li>
+          </ul>
+        </div>
+      </div>
       <br />
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{f.cModel.value}}</li>
-        <li class="list-group-item">{{f.cBrand.value}}</li>
-        <li class="list-group-item">{{f.cType.value}}</li>
-        <li class="list-group-item">{{f.cTransmission.value}}</li>
-        <li class="list-group-item">{{f.cSeats.value + " Seats"}}</li>
-      </ul>
+      <div class="card">
+        <h4 class="card-header">Car Information</h4>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{f.cModel.value}}</li>
+            <li class="list-group-item">{{f.cBrand.value}}</li>
+            <li class="list-group-item">{{f.cType.value}}</li>
+            <li class="list-group-item">{{f.cTransmission.value}}</li>
+            <li class="list-group-item">{{f.cSeats.value + " Seats"}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <br />
-
+  <div class="card">
+    <h4 class="card-header">Rent Duration</h4>
+    <div class="card-body">
       <form id="rentForm" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col">
@@ -31,7 +45,6 @@
               />
             </div>
           </div>
-
           <div class="col">
             <div class="form-group">
               <label for="date">End Date</label>
@@ -45,15 +58,8 @@
           </div>
         </div>
       </form>
-
-      <button class="btn btn-dark" form="rentForm" id="buttonBox1" >
-        Rent
-      </button>
-
-      <br />
-      <div *ngIf="sent" class="card-text result" >
-        <p id="result">{{result}}</p>
-      </div>
     </div>
   </div>
+  <button class="btn btn-dark" form="rentForm" id="buttonBox1" >Rent</button>
 </div>
+    
