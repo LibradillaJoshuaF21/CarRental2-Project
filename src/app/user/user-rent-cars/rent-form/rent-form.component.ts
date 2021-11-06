@@ -117,11 +117,11 @@ export class RentFormComponent implements OnInit {
       email: this.userInfo.email,
       contactNumber: this.userInfo.contactNumber,
       carID: this.car.carID,
-      carType: this.car.type,
       rentStartDate: this.f.rStartDate.value,
       rentEndDate: this.f.rEndDate.value,
+      rentStatus: false,
     };
-    this.rservice.addRent(payload);
+    this.rservice.addRental(payload);
     this.rentStatus.emit(false);
 
     this.sent = true;

@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="col-9">
+        <app-reserve-list
+            [sendRentalList]="rentalList"
+        ></app-reserve-list>
+    </div>
+    <div class="col">
+        <app-reserve-add
+            [sendCarList]="carList"
+            [sendUserInfo]="userList[0]"
+        ></app-reserve-add>
+    </div>
+    <div clss="col" *ngIf="editing">
+
+    </div>
+</div>>

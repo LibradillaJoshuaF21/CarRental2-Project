@@ -52,4 +52,12 @@ export class CarsService {
   sortBySeats(carSeats: number, carList: Car []){
     return carList.filter( car => car.seats === carSeats)
   }
+
+  sortAvailableCars(carList: Car []){
+    return carList.filter( car => car.rentStatus === false)
+  }
+
+  sortRentedCars(carList: Car []){
+    return carList.filter( car => car.rentStatus === true)
+  }
 }

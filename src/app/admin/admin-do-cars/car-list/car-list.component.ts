@@ -22,7 +22,10 @@ export class CarListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+  }
+
+  ngOnChanges(){
+    this.displayList = this.carList;
   }
 
   onEdit(i: number){

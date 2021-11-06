@@ -1,0 +1,38 @@
+<div class="container">   
+    <div class="row">
+        <div class="col-12 card"
+                *ngFor="let rental of rentalList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
+                <div class="card-body">
+                    <div class="row justify-content-between">
+                        <div class="col-8">   
+                            <h5 class="card-title">
+                                <span style="margin-right: 10px;">
+                                    <i class="bi bi-person-square"></i>
+                                </span>
+                                {{rental.email}}
+                            </h5>
+                            <p>
+                                <span id="addMarginRight"><i class="bi bi-person-square" style="margin-right: 5px;"></i>{{rental.firstName + " " + rental.lastName}}</span>
+                                <span id="addMarginRight"><i class="bi bi-telephone-fill" style="margin-right: 5px;"></i>{{rental.contactNumber}}</span>
+                            </p>
+                            <p class="card-text">
+                                <span id="addMarginRight"><i class="bi bi-house-fill" style="margin-right: 5px;"></i>{{rental.address}}</span>
+                            </p>
+                            <p>
+                                <span><i class="bi bi-key-fill" style="margin-right: 5px;"></i>{{rental.rentalID}}</span>
+                            </p>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(i)">Edit</button>
+                        </div>
+                    </div>  
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+    
+</div>

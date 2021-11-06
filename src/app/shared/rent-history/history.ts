@@ -8,5 +8,6 @@ export interface RentHistory {
     carID: string;
     carType: string;
     rentStartDate: Date;
-    rentEndDate: Date
+    rentEndDate: Date;
+    rentStatus: string;
 }
