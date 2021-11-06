@@ -73,6 +73,7 @@ export class ReserveAddComponent implements OnInit {
     var endDt = this.f.rEndDate.value;
     strDt = new Date(strDt).setHours(0,0,0,0);
     endDt = new Date(endDt).setHours(0,0,0,0);
+    this.currentDate.setHours(0,0,0,0);
     var truthValue = false;
     
 
@@ -94,21 +95,6 @@ export class ReserveAddComponent implements OnInit {
     } else {
       this.isNotRentable = true;
     }
-
-    // const payload: Rental = {
-    //   rentalID: '',
-    //   firstName: this.userInfo.firstName,
-    //   lastName: this.userInfo.lastName,
-    //   address: this.userInfo.address,
-    //   email: this.userInfo.email,
-    //   contactNumber: this.userInfo.contactNumber,
-    //   carID: this.f.selectedCar.value,
-    //   rentStartDate: this.f.rStartDate.value,
-    //   rentEndDate: this.f.rEndDate.value,
-    //   rentStatus: false
-    // };
-    // this.rservice.addRental(payload)
-    // this.addReserveForm.reset();
 
   
   }

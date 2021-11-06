@@ -20,6 +20,9 @@ export class RentCarListComponent implements OnInit {
   
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(){
     this.displayList = this.carList;
   }
 
