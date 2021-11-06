@@ -13,7 +13,7 @@ export class AdminDoReservationsComponent implements OnInit {
   rentalList = [] as any;
   carList = [] as any;
   editing = false;
-  editUserIndex!: number;
+  editRentalIndex!: number;
 
   userList = [] as any;
 
@@ -36,12 +36,12 @@ export class AdminDoReservationsComponent implements OnInit {
 
   onEdit(index: any){
     this.editing = true;
-    this.editUserIndex = index;
+    this.editRentalIndex = index;
   }
 
   editComplete(value: any){
     this.editing = value;
-    this.editUserIndex = null as any;
+    this.editRentalIndex = null as any;
   }
 
 }

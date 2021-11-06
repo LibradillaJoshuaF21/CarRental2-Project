@@ -1,1 +1,42 @@
-<p>reserve-detail works!</p>
+<div class="container">
+    <div class="card">   
+        <h2 class="card-header">Rental Details</h2>
+        <div class="card-body">
+            <div>
+                <label>Renter Information</label>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item py-1 px-2">{{rentalInfo.firstName+" "+rentalInfo.lastName}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalInfo.address}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalInfo.email}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalInfo.contactNumber}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalInfo.carID}}</li>
+                </ul>
+            </div>
+            <hr>
+            <div>
+                <label>Car Information</label>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item py-1 px-2">{{specificCar.carID}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.model}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.brand}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.type}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.transmission}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.seats+" Seater"}}</li>
+                </ul>
+            </div>
+            <hr>
+            <div>
+                <label>Rental Duration Information</label>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item py-1 px-2">{{rentalInfo.rentStartDate}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalInfo.rentEndDate}}</li>
+                </ul>
+            </div>
+            <button class="btn btn-light" id="userAddButtonBox2" (click)="stopEditing()">Cancel</button>
+            <hr>
+            <div>
+                <app-reserve-delete [sendRentalID]="rentalInfo.rentalID" (editStatus)="passEditStatus($event)"></app-reserve-delete>
+            </div>
+        </div>
+    </div>
+</div>

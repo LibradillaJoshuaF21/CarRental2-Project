@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Rental } from 'src/app/shared/rental/rental';
+import { CarsService } from 'src/app/shared/car/cars.service';
+import { RentalsService } from 'src/app/shared/rental/rentals.service';
+import { Car } from 'src/app/shared/car/car';
 
 @Component({
   selector: 'app-reserve-detail',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReserveDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input('sendRentalInfo') rentalInfo!: Rental;
+  @Input('sendCarList') carList!: Car[];
+  @Output() editStatus = new EventEmitter<boolean>();
+
+
+  specificCar = [] as any
+  
+  constructor(private rservice: RentalsService, private cservice: CarsService) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges(): void{
+    this.specificCar = this.cservice.getSpecificCar(this.rentalInfo.carID, this.carList);
+  }
+
+  stopEditing(){
+    this.editStatus.emit(false);
+  }
+
+  passEditStatus(status: any){
+    this.editStatus.emit(status);
   }
 
 }
