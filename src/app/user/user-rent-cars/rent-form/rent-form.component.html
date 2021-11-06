@@ -1,66 +1,65 @@
 <div class="container">
-  <div>
-  <div class="card">
-    <div class="card-body">
-      <div class="card">
-        <h4 class="card-header">Renter Information</h4>
-        <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Renter Name</li>
-            <li class="list-group-item">Address</li>
-            <li class="list-group-item">Email</li>
-            <li class="list-group-item">Contact Number</li>
-          </ul>
-        </div>
+  <div class="box1">
+    <div class="card">
+      <h4 class="card-header">Renter Information</h4>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item py-1 px-2">{{f.uFirstName.value + " " + f.uLastName.value}}</li>
+          <li class="list-group-item py-1 px-2">{{f.uAddress.value}}</li>
+          <li class="list-group-item py-1 px-2">{{f.uEmail.value}}</li>
+          <li class="list-group-item py-1 px-2">{{f.uContactNum.value}}</li>
+        </ul>
       </div>
-      <br/>
-      <div class="card">
-        <h4 class="card-header">Car Information</h4>
-        <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{f.cModel.value}}</li>
-            <li class="list-group-item">{{f.cBrand.value}}</li>
-            <li class="list-group-item">{{f.cType.value}}</li>
-            <li class="list-group-item">{{f.cTransmission.value}}</li>
-            <li class="list-group-item">{{f.cSeats.value + " Seats"}}</li>
-          </ul>
-        </div>
+    </div>
+    <br />
+    <div class="card">
+      <h4 class="card-header">Car Information</h4>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item py-1 px-2">{{ f.cModel.value }}</li>
+          <li class="list-group-item py-1 px-2">{{ f.cBrand.value }}</li>
+          <li class="list-group-item py-1 px-2">{{ f.cType.value }}</li>
+          <li class="list-group-item py-1 px-2">{{ f.cTransmission.value }}</li>
+          <li class="list-group-item py-1 px-2">{{ f.cSeats.value + " Seats" }}</li>
+        </ul>
       </div>
     </div>
   </div>
-  <br>
-  <div class="card">
-    <h4 class="card-header">Rent Duration</h4>
-    <div class="card-body">
-      <form id="rentForm" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="date">Start Date</label>
-              <input
-                type="date"
-                class="form-control"
-                name="rStartDate"
-                formControlName="rStartDate"
-              />
+
+  <div class="box2">
+    <div class="card">
+      <h4 class="card-header">Rent Duration</h4>
+      <div class="card-body">
+        <form id="rentForm" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="date">Start Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="rStartDate"
+                  formControlName="rStartDate"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="date">End Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="rEndDate"
+                  formControlName="rEndDate"
+                />
+              </div>
             </div>
           </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="date">End Date</label>
-              <input
-                type="date"
-                class="form-control"
-                name="rEndDate"
-                formControlName="rEndDate"
-              />
-            </div>
-          </div>
-        </div>
-      </form>
+        </form>
+        <button class="btn btn-dark" form="rentForm" id="buttonBox1">
+          Rent
+        </button>
+      </div>
     </div>
   </div>
-  <br>
-  <button class="btn btn-dark" form="rentForm" id="buttonBox1" >Rent</button>
 </div>
-    
