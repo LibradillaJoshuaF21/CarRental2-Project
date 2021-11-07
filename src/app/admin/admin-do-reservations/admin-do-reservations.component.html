@@ -2,6 +2,7 @@
     <div class="col-9">
         <app-reserve-list
             [sendRentalList]="rentalList"
+            (selectedRental)="onEdit($event)"
         ></app-reserve-list>
     </div>
     <div class="col">
@@ -11,6 +12,10 @@
         ></app-reserve-add>
     </div>
     <div clss="col" *ngIf="editing">
-
+        <app-reserve-detail
+            [sendRentalInfo]="rentalList[editRentalIndex]"
+            [sendCarList]="carList"
+            (editStatus)="editComplete($event)"
+        ></app-reserve-detail>
     </div>
 </div>>

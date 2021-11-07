@@ -60,4 +60,8 @@ export class CarsService {
   sortRentedCars(carList: Car []){
     return carList.filter( car => car.rentStatus === true)
   }
+
+  getSpecificCar(carID: string, carList: Car []){
+    return carList.find( car => car.carID === carID)
+  }
 }
