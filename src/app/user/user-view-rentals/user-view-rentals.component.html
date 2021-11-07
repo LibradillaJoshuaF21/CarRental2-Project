@@ -1,1 +1,18 @@
-<p>user-view-rentals works!</p>
+<div class="container">
+    <div class="col-9">
+        <app-view-rentals-list
+             [sendRentalList]="rentalList"
+             [sendUserInfo]="userList[0]"
+             (selectedRental)="onDetail($event)"
+        ></app-view-rentals-list>
+    </div>
+    <div *ngIf="detail">
+        <app-view-rental-detail
+            [sendUserRentalIndex]="detailRentalIndex"
+            [sendRentalList]="rentalList"
+            [sendCarList]="carList"
+            [sendUserInfo]="userList[0]"
+            (detailStatus)="detailComplete($event)"
+        ></app-view-rental-detail>
+    </div>
+</div>

@@ -47,7 +47,6 @@ export class ReserveAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   ngOnChanges() {
@@ -80,6 +79,7 @@ export class ReserveAddComponent implements OnInit {
     if(new Date(strDt).getTime() > this.currentDate.getTime() && new Date(endDt).getTime() > new Date(strDt).getTime()){
       const payload: Rental = {
         rentalID: '',
+        userID: this.userInfo.userID,
         firstName: this.userInfo.firstName,
         lastName: this.userInfo.lastName,
         address: this.userInfo.address,

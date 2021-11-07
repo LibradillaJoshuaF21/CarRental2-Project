@@ -40,4 +40,8 @@ export class RentalsService {
   sortReservationList(rentalList: Rental[]){
     return rentalList.filter( rental => rental.rentStatus === false)
   }
+
+  getUserRentalList(userID: string, rentalList: Rental[]){
+    return rentalList.filter( rental => rental.userID === userID)
+  }
 }

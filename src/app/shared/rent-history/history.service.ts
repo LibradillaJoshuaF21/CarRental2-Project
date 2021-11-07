@@ -19,13 +19,17 @@ export class HistoryService {
     this.rentHistories = this.rentHistoryCollection.valueChanges();
   }
 
-  addRentHistory(rentHistory: RentHistory){
+  addRentHistory(rental: RentHistory){
     const pushkey = this.afs.createId();
-    rentHistory.rentID = pushkey;
-    this.afs.doc(pushkey).set(rentHistory);
+    rental.rentID = pushkey;
+    this.rentHistoryCollection.doc(pushkey).set(rental);
   }
 
-  getRentList(){
+  getRentHistoryList(){
     return this.rentHistories;
+  }
+
+  getUserHistoryList(userID: string, historyList: RentHistory []){
+    return historyList.filter( history => history.userID === userID)
   }
 }

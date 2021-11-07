@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CarsService } from 'src/app/shared/car/cars.service';
-import { User } from 'src/app/shared/user/user';
 import { UsersService } from 'src/app/shared/user/users.service';
 
 @Component({
