@@ -69,7 +69,6 @@ export class UserAddComponent implements OnInit {
         this.addUserForm.reset();
     }
     else {
-      window.alert('Email already exists.')
       this.isDuplicate = true;
     }
   }

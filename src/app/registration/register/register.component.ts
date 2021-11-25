@@ -68,7 +68,6 @@ export class RegisterComponent implements OnInit {
         this.addUserForm.reset();
     }
     else {
-      window.alert('Email already exists.')
       this.isDuplicate = true;
     }
   }
