@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+  ) { }
 
   ngOnInit(): void {
+
+  }
+
+  logOut(){
+    this.authService.SignOut();
   }
 
 }
