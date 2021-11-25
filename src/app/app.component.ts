@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { isAdmin } from '@firebase/util';
 import { AuthService } from './shared/auth/auth.service';
 
 @Component({
@@ -9,12 +10,25 @@ import { AuthService } from './shared/auth/auth.service';
 export class AppComponent {
   title = 'CarRental2';
 
-  userLogIn = true;
-  adminLogIn = false;
+  constructor(private authService: AuthService) { };
 
-  constructor( private authService: AuthService){};
-
-  logOut(){
+  logOut() {
     this.authService.SignOut();
   }
+
+  checkIfAdmin() {
+    var checkRole = this.authService.isLoggedIn;
+    return checkRole;
+  }
+
+  checkIfLoggedIn() {
+    if (this.authService.isLoggedIn) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+
 }
