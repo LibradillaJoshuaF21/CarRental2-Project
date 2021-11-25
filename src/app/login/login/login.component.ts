@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/user/users.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +15,18 @@ export class LoginComponent implements OnInit {
   userList = [] as any;
 
   loginForm = this.fb.group({
-    username: ['',{
-      validators: [Validators.required]
+    email: ['',{
+      validators: [Validators.required, Validators.email]
     }], 
     password: ['',{
       validators: [Validators.required]
     }]
   });
 
-  constructor(private fb: FormBuilder, private uservice: UsersService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private uservice: UsersService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.uservice.getUser().subscribe((val) => {
@@ -32,7 +38,9 @@ export class LoginComponent implements OnInit {
   get f(){return this.loginForm.controls;}
 
   onSubmit(){
-    
+    const inputEmail = this.f.email.value;
+    const inputPassword = this.f.password.value;
+    this.authService.SignIn(inputEmail,inputPassword);
   }
 
 }

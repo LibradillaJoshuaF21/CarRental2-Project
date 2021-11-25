@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/user/users.service';
 import { User } from 'src/app/shared/user/user';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-user-add',
@@ -34,7 +36,10 @@ export class UserAddComponent implements OnInit {
     }],
   });
 
-  constructor(private fb: FormBuilder, private uservice: UsersService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private uservice: UsersService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.uservice.getUser().subscribe((val) => {
@@ -44,6 +49,9 @@ export class UserAddComponent implements OnInit {
 
   onSubmit(){
     if(!(this.uservice.checkDuplicate(this.f.email.value, this.userList))){
+      const userEmail = this.f.email.value;
+      var bcrypt = require('bcryptjs');
+      var hash = bcrypt.hashSync('bacon', 8);
       const payload: User = {
         userID: '',
         firstName: this.f.fname.value,
@@ -51,13 +59,17 @@ export class UserAddComponent implements OnInit {
         address: this.f.address.value,
         email: this.f.email.value,
         contactNumber: this.f.contactnum.value,
-        password: this.f.rpassword.value
+        password: hash,
       };
         this.uservice.addUser(payload);
         this.isDuplicate = false;
+
+        this.authService.SignUp(userEmail, this.f.rpassword.value);
+
         this.addUserForm.reset();
     }
     else {
+      window.alert('Email already exists.')
       this.isDuplicate = true;
     }
   }

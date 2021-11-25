@@ -4,15 +4,16 @@
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="email">Email</label>
                     <input
                     type="text"
                     class="form-control"
-                    name="username"
-                    formControlName="username"
-                    [ngClass]="{ 'is-invalid': f.username.dirty && f.username.errors }"/>
-                    <div *ngIf="f.username.dirty && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.dirty && f.username.errors.required">Username is required</div>
+                    name="email"
+                    formControlName="email"
+                    [ngClass]="{ 'is-invalid': f.email.dirty && f.email.errors }"/>
+                    <div *ngIf="f.email.dirty && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.dirty && f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.dirty && f.email.errors.email">Must be a valid email</div>
                     </div>
                 </div>
                 
@@ -25,7 +26,7 @@
                     formControlName="password"
                     [ngClass]="{ 'is-invalid': f.password.dirty && f.password.errors }"/>
                     <div *ngIf="f.password.dirty && f.password.errors" class="invalid-feedback">
-                        <div *ngIf=" f.username.dirty && f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.dirty && f.password.errors.required">Password is required</div>
                     </div>
                 </div>
             </form>
