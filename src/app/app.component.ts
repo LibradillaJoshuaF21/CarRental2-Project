@@ -16,12 +16,12 @@ export class AppComponent {
   }
 
   checkIfAdmin() {
-    return this.authService.isAdmin;
+    var checkRole = this.authService.isAdmin;
+    console.log(checkRole);
+    return checkRole;
   }
 
   checkIfLoggedIn() {
     return this.authService.isLoggedIn;
   }
-
-
 }
