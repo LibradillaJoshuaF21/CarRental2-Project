@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
@@ -14,15 +14,16 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth, 
     public router: Router,  
-    public ngZone: NgZone,
   ) { 
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user') || '');
+        
       } else {
         localStorage.setItem('user', 'null');
+        localStorage.setItem('isAdmin', 'null');
         JSON.parse(localStorage.getItem('user') || '');
       }
     })
@@ -31,11 +32,9 @@ export class AuthService {
   SignIn(email: any, password: any) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
     .then ((result) => {
+      this.router.navigate(['admin']);
+      this.SetUserData(result.user);
       this.storeRole();
-      this.ngZone.run(() => {
-        this.router.navigate(['admin']);
-        this.SetUserData(result.user);
-      });
     }).catch((error) => {
       window.alert(error.message)
     });
@@ -44,10 +43,8 @@ export class AuthService {
   SignUp(email: any, password: any) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
     .then ((result) => {
-      this.ngZone.run(() => {
-        this.router.navigate(['admin']);
-        this.SetUserData(result.user);
-      });
+      this.router.navigate(['admin']);
+      this.SetUserData(result.user);
     }).catch((error) => {
       window.alert(error.message)
     });
@@ -86,9 +83,21 @@ export class AuthService {
   storeRole() {
     this.afAuth.authState.subscribe( user => {
       if (user) {
-        this.afs.collection('user').doc(user.uid).get().subscribe(result => {
+        this.afs.collection('users').doc(user.uid).get().subscribe(result => {
           if (result) {
             localStorage.setItem('isAdmin', result.get('isAdmin'));
+          }
+        });
+      }
+    })
+  }
+
+  getUserEmail() {
+    this.afAuth.authState.subscribe( user => {
+      if (user) {
+        this.afs.collection('users').doc(user.uid).get().subscribe(result => {
+          if (result) {
+            return result.get('email');
           }
         });
       }
