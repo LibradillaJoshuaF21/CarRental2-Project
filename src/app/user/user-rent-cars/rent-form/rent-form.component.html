@@ -59,6 +59,7 @@
         <button class="btn btn-dark" form="rentForm" id="buttonBox1">
           Rent
         </button>
+        <div *ngIf="isNotRentable"><span style="color:red">INVALID DATE INPUT. TRY AGAIN.</span></div>
       </div>
     </div>
   </div>

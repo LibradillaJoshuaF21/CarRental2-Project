@@ -1,27 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Car Rentals</a>
+    <a class="navbar-brand">Car Rentals</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#" >Home<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink = "home">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Rent</a>
+          <a class="nav-link" routerLink = "rent">Rent</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Rentals</a>
+          <a class="nav-link" routerLink = "rentals">Rentals</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">History</a>
+            <a class="nav-link" routerLink = "history">History</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Log Out</a>
+            <a class="nav-link">Log Out</a>
         </li>
       </ul>
     </div>
 </nav>
 
+<router-outlet></router-outlet>
 
 <!-- <app-user-rent-cars></app-user-rent-cars> -->
 <!-- <app-user-view-history></app-user-view-history> -->
-<app-user-view-rentals></app-user-view-rentals>
+<!-- <app-user-view-rentals></app-user-view-rentals> -->
