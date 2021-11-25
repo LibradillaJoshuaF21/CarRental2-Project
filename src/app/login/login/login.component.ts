@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
     const inputEmail = this.f.email.value;
     const inputPassword = this.f.password.value;
     this.authService.SignIn(inputEmail,inputPassword);
-
   }
 
   clearAll(){

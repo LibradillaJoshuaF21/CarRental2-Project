@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarsService } from 'src/app/shared/car/cars.service';
 import { UsersService } from 'src/app/shared/user/users.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-user-rent-cars',
@@ -14,7 +15,13 @@ export class UserRentCarsComponent implements OnInit {
   rentCarIndex!: number;
   userList = [] as any;
 
-  constructor(private cservice: CarsService, private uservice: UsersService) { }
+  userIndex!: any;
+  currentUserEmail!: any;
+
+  constructor(
+    private cservice: CarsService, 
+    private uservice: UsersService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cservice.getCar().subscribe((val) => {
@@ -23,9 +30,18 @@ export class UserRentCarsComponent implements OnInit {
     this.uservice.getUser().subscribe((val) => {
       this.userList = val;
     });
+    this.currentUserEmail = this.authService.getUserEmail();
+    this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
   }
 
+  // ngOnChanges() {
+  //   this.currentUserEmail = this.authService.getUserEmail();
+  //   this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
+  // }
+
   onRent(index: any){
+    console.log(this.currentUserEmail);
+    console.log(this.userIndex);
     this.renting = true;
     this.rentCarIndex = index;
   }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { isAdmin } from '@firebase/util';
 import { AuthService } from './shared/auth/auth.service';
 
 @Component({
@@ -17,17 +16,11 @@ export class AppComponent {
   }
 
   checkIfAdmin() {
-    var checkRole = this.authService.isLoggedIn;
-    return checkRole;
+    return this.authService.isAdmin;
   }
 
   checkIfLoggedIn() {
-    if (this.authService.isLoggedIn) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    return this.authService.isLoggedIn;
   }
 
 

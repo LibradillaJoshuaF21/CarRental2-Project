@@ -40,4 +40,8 @@ export class UsersService {
   checkDuplicate(email: string, userList: User[]){
     return userList.some( user => user.email === email)
   }
+
+  getUserIndex(userEmail: string, userList: User[]){
+    return userList.findIndex( user => user.email === userEmail)
+  } 
 }
