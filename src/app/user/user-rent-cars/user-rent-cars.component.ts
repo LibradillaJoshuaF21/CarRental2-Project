@@ -34,4 +34,5 @@ export class UserRentCarsComponent implements OnInit {
     this.renting = value;
     this.rentCarIndex = null as any;
   }
+
 }
