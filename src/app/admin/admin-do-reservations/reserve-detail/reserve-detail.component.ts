@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Rental } from 'src/app/shared/rental/rental';
 import { CarsService } from 'src/app/shared/car/cars.service';
-import { RentalsService } from 'src/app/shared/rental/rentals.service';
 import { Car } from 'src/app/shared/car/car';
 
 @Component({
@@ -18,7 +17,7 @@ export class ReserveDetailComponent implements OnInit {
 
   specificCar = [] as any
   
-  constructor(private rservice: RentalsService, private cservice: CarsService) { }
+  constructor(private cservice: CarsService) { }
 
   ngOnInit(): void {
 

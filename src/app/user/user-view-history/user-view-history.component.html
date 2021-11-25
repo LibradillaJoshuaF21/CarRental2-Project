@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="col-9">
+        <app-view-car-list
+             [sendHistoryList]="historyList"
+             [sendUserInfo]="userList[0]"
+             (selectedHistory)="onDetail($event)"
+        ></app-view-car-list>
+    </div>
+    <div *ngIf="detail">
+        <app-view-detail
+            [sendUserHistoryIndex]="detailHistoryIndex"
+            [sendHistoryList]="historyList"
+            [sendCarList]="carList"
+            [sendUserInfo]="userList[0]"
+            (detailStatus)="detailComplete($event)"
+        ></app-view-detail>
+        
+    </div>
+</div>

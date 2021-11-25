@@ -1,5 +1,6 @@
 export interface Rental {
     rentalID: string;
+    userID: string;
     firstName: string;
     lastName: string;
     address: string

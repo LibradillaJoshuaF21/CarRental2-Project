@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Car } from 'src/app/shared/car/car';
+import { RentHistory } from 'src/app/shared/rent-history/history';
+import { HistoryService } from 'src/app/shared/rent-history/history.service';
 import { Rental } from 'src/app/shared/rental/rental';
 import { RentalsService } from 'src/app/shared/rental/rentals.service';
 
@@ -24,7 +26,7 @@ export class RentFormComponent implements OnInit {
 
   rentForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private rservice: RentalsService) { }
+  constructor(private fb: FormBuilder, private rservice: RentalsService, private rhservice: HistoryService) { }
 
   ngOnInit(): void {
     this.rentForm = this.fb.group({
@@ -80,9 +82,10 @@ export class RentFormComponent implements OnInit {
       truthValue = false;
     }
 
-    if (new Date(endDt).getTime() > new Date(strDt).getTime()) {
+    if (new Date(endDt).getTime() > new Date(strDt).getTime() && new Date(strDt).getTime() >= this.currentDate.getTime()) {
       const payload: Rental = {
         rentalID: '',
+        userID: this.userInfo.userID,
         firstName: this.userInfo.firstName,
         lastName: this.userInfo.lastName,
         address: this.userInfo.address,
@@ -93,8 +96,24 @@ export class RentFormComponent implements OnInit {
         rentEndDate: this.f.rEndDate.value,
         rentStatus: truthValue,
       };
+      const payload2: RentHistory = {
+        rentID: '',
+        userID: this.userInfo.userID,
+        firstName: this.userInfo.firstName,
+        lastName: this.userInfo.lastName,
+        address: this.userInfo.address,
+        email: this.userInfo.email,
+        contactNumber: this.userInfo.contactNumber,
+        carID: this.car.carID,
+        carModel: this.car.model,
+        rentStartDate: this.f.rStartDate.value,
+        rentEndDate: this.f.rEndDate.value,
+        rentStatus: truthValue,
+      }
       this.rservice.addRental(payload);
+      this.rhservice.addRentHistory(payload2);
       this.rentStatus.emit(false);
+      
     } else {
       this.isNotRentable = true;
     }

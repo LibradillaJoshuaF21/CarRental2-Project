@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card">   
+        <h2 class="card-header">Rental Details</h2>
+        <div class="card-body">
+            <div>
+                <label>Renter Information</label>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].firstName+" "+userRentalList[rentalIndex].lastName}}</li>
+                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].address}}</li>
+                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].email}}</li>
+                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].contactNumber}}</li>
+                </ul>
+            </div>
+            <hr>
+            <div>
+                <label>Car Information</label>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item py-1 px-2">{{specificCar.carID}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.model}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.brand}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.type}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.transmission}}</li>
+                    <li class="list-group-item py-1 px-2">{{specificCar.seats+" Seater"}}</li>
+                </ul>
+            </div>
+            <hr>
+            <div>
+                <label>Rental Duration Information</label>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].rentStartDate}}</li>
+                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].rentEndDate}}</li>
+                </ul>
+            </div>
+            <button class="btn btn-light" id="userAddButtonBox2" (click)="onClose()">Close</button>
+            <hr>
+            <div>
+                <app-rental-cancel [sendRentalID]="userRentalList[rentalIndex].rentalID" [isCancellable]="cancel" (editStatus)="onCancelReservation($event)"></app-rental-cancel>
+            </div>
+        </div>
+    </div>
+</div>
+
