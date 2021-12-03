@@ -41,7 +41,8 @@ export class UsersService {
     return userList.some( user => user.email === email)
   }
 
-  getUserIndex(userEmail: string, userList: User[]){
-    return userList.findIndex( user => user.email === userEmail)
+  getUserIndex(userEmail: any, userList: User[]){
+    console.log(userList);
+    return userList.findIndex( user => user.email == userEmail)
   } 
 }
