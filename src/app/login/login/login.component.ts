@@ -39,9 +39,12 @@ export class LoginComponent implements OnInit {
   get f(){return this.loginForm.controls;}
 
   onSubmit(){
-    const inputEmail = this.f.email.value;
-    const inputPassword = this.f.password.value;
-    this.authService.SignIn(inputEmail,inputPassword);
+    this.authService.SignIn(this.f.email.value,this.f.password.value)
+    if(this.authService.isAdmin){
+      this.router.navigate(['admin']);
+    } else {
+      this.router.navigate(['user']);
+    }
   }
 
   clearAll(){

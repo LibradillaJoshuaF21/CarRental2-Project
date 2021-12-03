@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/user/users.service';
 import { User } from 'src/app/shared/user/user';
 import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -38,7 +39,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private uservice: UsersService,
-    private authService: AuthService,) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.uservice.getUser().subscribe((val) => {
@@ -66,6 +68,8 @@ export class RegisterComponent implements OnInit {
         this.authService.SignUp(userEmail, this.f.rpassword.value);
 
         this.addUserForm.reset();
+
+        this.router.navigate(['']);
     }
     else {
       this.isDuplicate = true;
