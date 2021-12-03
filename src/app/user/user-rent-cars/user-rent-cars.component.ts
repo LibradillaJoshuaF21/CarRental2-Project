@@ -30,16 +30,15 @@ export class UserRentCarsComponent implements OnInit {
     this.uservice.getUser().subscribe((val) => {
       this.userList = val;
     });
-    this.currentUserEmail = this.authService.getUserEmail();
-    this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
+    this.currentUserEmail = this.authService.userEmail;
   }
 
-  // ngOnChanges() {
-  //   this.currentUserEmail = this.authService.getUserEmail();
-  //   this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
-  // }
+  ngOnChanges() {
+
+  }
 
   onRent(index: any){
+    this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
     console.log(this.currentUserEmail);
     console.log(this.userIndex);
     this.renting = true;

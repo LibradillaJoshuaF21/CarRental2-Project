@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder, 
     private uservice: UsersService,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit(): void {
     this.uservice.getUser().subscribe((val) => {
@@ -42,8 +42,10 @@ export class LoginComponent implements OnInit {
     this.authService.SignIn(this.f.email.value,this.f.password.value)
     if(this.authService.isAdmin){
       this.router.navigate(['admin']);
+      console.log(this.authService.userEmail);
     } else {
       this.router.navigate(['user']);
+      console.log(this.authService.userEmail);
     }
   }
 

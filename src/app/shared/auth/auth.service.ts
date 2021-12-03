@@ -24,6 +24,7 @@ export class AuthService {
       } else {
         localStorage.setItem('user', 'null');
         localStorage.setItem('isAdmin', 'null');
+        localStorage.setItem('currentEmail', 'null');
         JSON.parse(localStorage.getItem('user') || '');
       }
     })
@@ -33,6 +34,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
     .then (() => {
       this.storeRole();
+      this.storeEmail();
     }).catch((error) => {
       window.alert(error.message);
     });
@@ -51,6 +53,7 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       localStorage.removeItem('isAdmin');
+      localStorage.removeItem('currentEmail');
       this.router.navigate(['']);
     })
   }
@@ -63,6 +66,11 @@ export class AuthService {
   get isAdmin(): boolean {
     const role = JSON.parse(localStorage.getItem('isAdmin') || '');
     return (role == true) ? true : false;
+  }
+
+  get userEmail(): String {
+    const daEmail = JSON.parse(localStorage.getItem('currentEmail') || '');
+    return daEmail;
   }
 
   SetUserData(user: any) {
@@ -89,16 +97,28 @@ export class AuthService {
     })
   }
 
-  getUserEmail() {
+  storeEmail() {
     this.afAuth.authState.subscribe( user => {
       if (user) {
         this.afs.collection('users').doc(user.uid).get().subscribe(result => {
           if (result) {
-            return result.get('email');
+            localStorage.setItem('currentEmail', JSON.stringify(result.get('email')));
           }
         });
       }
     })
   }
+
+  // getUserEmail() {
+  //   this.afAuth.authState.subscribe( user => {
+  //     if (user) {
+  //       this.afs.collection('users').doc(user.uid).get().subscribe(result => {
+  //         if (result) {
+  //           return result.get('email');
+  //         }
+  //       });
+  //     }
+  //   })
+  // }
 
 }
