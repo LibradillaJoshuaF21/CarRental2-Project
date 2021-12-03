@@ -31,22 +31,19 @@ export class AuthService {
 
   SignIn(email: any, password: any) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-    .then ((result) => {
-      this.router.navigate(['admin']);
-      this.SetUserData(result.user);
+    .then (() => {
       this.storeRole();
     }).catch((error) => {
-      window.alert(error.message)
+      window.alert(error.message);
     });
   }
 
   SignUp(email: any, password: any) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
     .then ((result) => {
-      this.router.navigate(['admin']);
       this.SetUserData(result.user);
     }).catch((error) => {
-      window.alert(error.message)
+      window.alert(error.message);
     });
   }
 
@@ -65,7 +62,7 @@ export class AuthService {
 
   get isAdmin(): boolean {
     const role = JSON.parse(localStorage.getItem('isAdmin') || '');
-    return role;
+    return (role == true) ? true : false;
   }
 
   SetUserData(user: any) {
