@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './shared/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthService } from './shared/auth/auth.service';
 export class AppComponent {
   title = 'CarRental2';
 
-  constructor(private authService: AuthService) { };
+  constructor(private authService: AuthService, private router: Router) { };
 
   logOut() {
     this.authService.SignOut();
@@ -23,5 +24,7 @@ export class AppComponent {
     return this.authService.isLoggedIn;
   }
 
-
+  checkIfLogPage() {
+    return this.router.url === '/login';
+  }
 }

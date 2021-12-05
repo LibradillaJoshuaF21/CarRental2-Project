@@ -44,6 +44,7 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
     .then ((result) => {
       this.SetUserData(result.user);
+      this.router.navigate(['']);
     }).catch((error) => {
       window.alert(error.message);
     });
@@ -91,6 +92,11 @@ export class AuthService {
         this.afs.collection('users').doc(user.uid).get().subscribe(result => {
           if (result) {
             localStorage.setItem('isAdmin', result.get('isAdmin'));
+            if(result.get('isAdmin')){
+              this.router.navigate(['admin']);
+            } else {
+              this.router.navigate(['user']);
+            }
           }
         });
       }
@@ -108,17 +114,5 @@ export class AuthService {
       }
     })
   }
-
-  // getUserEmail() {
-  //   this.afAuth.authState.subscribe( user => {
-  //     if (user) {
-  //       this.afs.collection('users').doc(user.uid).get().subscribe(result => {
-  //         if (result) {
-  //           return result.get('email');
-  //         }
-  //       });
-  //     }
-  //   })
-  // }
 
 }

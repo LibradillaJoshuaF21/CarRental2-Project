@@ -40,13 +40,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.authService.SignIn(this.f.email.value,this.f.password.value)
-    if(this.authService.isAdmin){
-      this.router.navigate(['admin']);
-      console.log(this.authService.userEmail);
-    } else {
-      this.router.navigate(['user']);
-      console.log(this.authService.userEmail);
-    }
   }
 
   clearAll(){
