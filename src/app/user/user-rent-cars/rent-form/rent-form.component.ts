@@ -26,9 +26,14 @@ export class RentFormComponent implements OnInit {
 
   rentForm!: FormGroup;
 
+  rentalList = [] as any;
+
   constructor(private fb: FormBuilder, private rservice: RentalsService, private rhservice: HistoryService) { }
 
   ngOnInit(): void {
+    this.rservice.getRentalList().subscribe((val) => {
+      this.rentalList = val;
+    });
     this.rentForm = this.fb.group({
       uFirstName: [this.userInfo.firstName, Validators.required],
       uLastName: [this.userInfo.lastName, Validators.required],
@@ -110,9 +115,16 @@ export class RentFormComponent implements OnInit {
         rentEndDate: this.f.rEndDate.value,
         rentStatus: truthValue,
       }
-      this.rservice.addRental(payload);
-      this.rhservice.addRentHistory(payload2);
-      this.rentStatus.emit(false);
+      console.log(this.rservice.canRent(this.f.rStartDate.value, this.car.carID, this.rentalList));
+      console.log(this.f.rStartDate.value);
+
+      if(this.rservice.canRent(this.f.rStartDate.value, this.car.carID, this.rentalList)){
+        this.rservice.addRental(payload);
+        this.rhservice.addRentHistory(payload2);
+        this.rentStatus.emit(false);
+      }else{
+        console.log('Cannot Rent');
+      }
       
     } else {
       this.isNotRentable = true;

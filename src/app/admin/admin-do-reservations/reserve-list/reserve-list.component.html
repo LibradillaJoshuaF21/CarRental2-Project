@@ -1,29 +1,30 @@
 <div class="container">   
+    
     <div class="row">
         <div class="col-12 card"
-                *ngFor="let rental of rentalList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
+                *ngFor="let rent of rentalList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
                 <div class="card-body">
                     <div class="row justify-content-between">
                         <div class="col-8">   
                             <h5 class="card-title">
                                 <span style="margin-right: 10px;">
-                                    <i class="bi bi-person-square"></i>
+                                    <i class="bi bi-truck"></i>
                                 </span>
-                                {{rental.email}}
+                                {{rent.carID}}
                             </h5>
                             <p>
-                                <span id="addMarginRight"><i class="bi bi-person-square" style="margin-right: 5px;"></i>{{rental.firstName + " " + rental.lastName}}</span>
-                                <span id="addMarginRight"><i class="bi bi-telephone-fill" style="margin-right: 5px;"></i>{{rental.contactNumber}}</span>
-                            </p>
-                            <p class="card-text">
-                                <span id="addMarginRight"><i class="bi bi-house-fill" style="margin-right: 5px;"></i>{{rental.address}}</span>
+                                <span id="addMarginRight"><i class="bi bi-calendar-date-fill" style="margin-right: 5px;"></i>{{rent.rentStartDate}}</span>
+                                <span id="addMarginRight">{{" | "}}</span><span class="addMarginRight">{{rent.rentEndDate}}</span>
                             </p>
                             <p>
-                                <span><i class="bi bi-key-fill" style="margin-right: 5px;"></i>{{rental.rentalID}}</span>
+                                <span id="addMarginRight"><i class="bi bi-at" style="margin-right: 5px;"></i>{{rent.email}}</span>
+                            </p>
+                            <p class="card-text">
+                                <span id="addMarginRight"><i class="bi bi-house-fill" style="margin-right: 5px;"></i>{{rent.address}}</span>
                             </p>
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(i)">Edit</button>
+                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(i)">Details</button>
                         </div>
                     </div>  
                 </div>

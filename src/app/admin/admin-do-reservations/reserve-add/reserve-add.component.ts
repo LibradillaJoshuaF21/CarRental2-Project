@@ -21,6 +21,8 @@ export class ReserveAddComponent implements OnInit {
   currentDate = new Date();
   isNotRentable = false;
 
+  rentalList = [] as any;
+
   
   addReserveForm = this.fb.group({
     userEmail: ['',{
@@ -47,6 +49,9 @@ export class ReserveAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rservice.getRentalList().subscribe((val) => {
+      this.rentalList = val;
+    });
   }
 
   ngOnChanges() {
@@ -90,8 +95,18 @@ export class ReserveAddComponent implements OnInit {
         rentEndDate: this.f.rEndDate.value,
         rentStatus: truthValue,
       };
-      this.rservice.addRental(payload)
-      this.addReserveForm.reset();
+      
+      console.log(this.rservice.canRent(this.f.rStartDate.value, this.f.selectedCar.value, this.rentalList));
+      console.log(this.f.rStartDate.value);
+      
+      
+      if(this.rservice.canRent(this.f.rStartDate.value, this.f.selectedCar.value, this.rentalList)){
+        this.rservice.addRental(payload)
+        this.addReserveForm.reset();
+        
+      } else {
+        console.log('Cannot Rent');
+      }
     } else {
       this.isNotRentable = true;
     }
@@ -103,15 +118,4 @@ export class ReserveAddComponent implements OnInit {
     return this.addReserveForm.controls;
   }
 
-   // if(new Date(strDt).getTime() === this.currentDate.getTime()){
-    //   truthValue = true;
-    // }
-
-  // this.currentDate.setHours(0,0,0,0);
-
-  // var endDt = this.f.rEndDate.value;
-  // endDt = new Date(endDt).setHours(0,0,0,0);
-  // console.log(new Date(endDt).getTime());
-  // console.log(this.currentDate.getTime());
-  // console.log(this.currentDate.getTime() === new Date(endDt).getTime());
 }

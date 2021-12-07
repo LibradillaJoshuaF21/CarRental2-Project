@@ -1,15 +1,15 @@
 <div class="container">
-    <div class="col-9">
-        <app-reserve-list
-            [sendRentalList]="rentalList"
-            (selectedRental)="onEdit($event)"
-        ></app-reserve-list>
-    </div>
     <div class="col">
         <app-reserve-add
             [sendCarList]="carList"
             [sendUserInfo]="userList[0]"
         ></app-reserve-add>
+    </div>
+    <div class="col-9">
+        <app-reserve-list
+            [sendRentalList]="rentalList"
+            (selectedRental)="onEdit($event)"
+        ></app-reserve-list>
     </div>
     <div clss="col" *ngIf="editing">
         <app-reserve-detail

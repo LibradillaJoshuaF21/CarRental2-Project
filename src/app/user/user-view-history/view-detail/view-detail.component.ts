@@ -31,8 +31,4 @@ export class ViewDetailComponent implements OnInit {
     this.specificCar = this.cservice.getSpecificCar(this.userHistoryList[this.historyIndex].carID, this.carList); 
   }
 
-  onCancel(){
-    this.detailStatus.emit(false);
-  }
-
 }

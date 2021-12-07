@@ -42,7 +42,6 @@ export class UsersService {
   }
 
   getUserIndex(userEmail: any, userList: User[]){
-    console.log(userList);
     return userList.findIndex( user => user.email == userEmail)
   } 
 }
