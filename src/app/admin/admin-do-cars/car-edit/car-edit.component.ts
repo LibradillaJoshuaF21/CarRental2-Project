@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CarsService } from 'src/app/shared/car/cars.service';
 import { Car } from 'src/app/shared/car/car';
+import { PopupService } from 'src/app/shared/notification/popup.service';
 
 @Component({
   selector: 'app-car-edit',
@@ -15,7 +16,10 @@ export class CarEditComponent implements OnInit {
 
   editCarForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private cservice: CarsService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private cservice: CarsService,
+    private pop: PopupService) { }
 
   ngOnInit(): void {
     this.editCarForm = this.fb.group({
@@ -50,6 +54,7 @@ export class CarEditComponent implements OnInit {
       rentStatus: false
     };
     this.cservice.modifyCar(this.car.carID, payload);
+    this.pop.editSuccess();
     this.editStatus.emit(false);
   }
 

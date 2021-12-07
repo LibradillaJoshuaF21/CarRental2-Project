@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { AuthUser } from '../auth-user';
+import { PopupService } from '../notification/popup.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth, 
     public router: Router,  
+    private pop: PopupService,
   ) { 
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -45,6 +47,7 @@ export class AuthService {
     .then ((result) => {
       this.SetUserData(result.user);
       this.router.navigate(['']);
+      this.pop.userRegistered();
     }).catch((error) => {
       window.alert(error.message);
     });
@@ -52,6 +55,7 @@ export class AuthService {
 
   SignOut() {
     return this.afAuth.signOut().then(() => {
+      this.pop.logOut();
       localStorage.removeItem('user');
       localStorage.removeItem('isAdmin');
       localStorage.removeItem('currentEmail');
@@ -93,8 +97,10 @@ export class AuthService {
           if (result) {
             localStorage.setItem('isAdmin', result.get('isAdmin'));
             if(result.get('isAdmin')){
+              this.pop.adminLogIn();
               this.router.navigate(['admin']);
             } else {
+              this.pop.userLogIn();
               this.router.navigate(['user']);
             }
           }

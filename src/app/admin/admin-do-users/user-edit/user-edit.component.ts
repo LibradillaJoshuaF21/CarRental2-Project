@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UsersService } from 'src/app/shared/user/users.service';
 import { User } from 'src/app/shared/user/user';
+import { PopupService } from 'src/app/shared/notification/popup.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,9 +16,11 @@ export class UserEditComponent implements OnInit {
 
   userList = [] as any;
   editUserForm!: FormGroup;
-  isDuplicate = false;
 
-  constructor(private fb: FormBuilder, private uservice: UsersService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private uservice: UsersService,
+    private pop: PopupService,) { }
 
   ngOnInit(): void {
     this.uservice.getUser().subscribe((val) => {
@@ -59,7 +62,6 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit(){
-    if(!(this.uservice.checkDuplicate(this.f.email.value, this.userList))){
       const payload: User = {
         userID: this.user.userID,
         firstName: this.f.fname.value,
@@ -71,10 +73,8 @@ export class UserEditComponent implements OnInit {
       };
       this.uservice.modifyUser(this.user.userID, payload);
       this.editUserForm.reset();
-    }
-    else {
-      this.isDuplicate = true;
-    }
+      this.pop.editSuccess();
+      this.stopEditing();
   }
 
   stopEditing(){

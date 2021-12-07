@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RentalsService } from 'src/app/shared/rental/rentals.service';
 import { CarsService } from 'src/app/shared/car/cars.service';
 import { UsersService } from 'src/app/shared/user/users.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-admin-do-reservations',
@@ -14,13 +15,15 @@ export class AdminDoReservationsComponent implements OnInit {
   carList = [] as any;
   editing = false;
   editRentalIndex!: number;
-
   userList = [] as any;
+
+  userIndex!: any;
+  currentUserEmail!: any;
 
   constructor(
     private rservice: RentalsService, 
     private cservice: CarsService, 
-    private uservice: UsersService) { }
+    private uservice: UsersService,) { }
 
   ngOnInit(): void {
     this.rservice.getRentalList().subscribe((val) => {
@@ -43,5 +46,4 @@ export class AdminDoReservationsComponent implements OnInit {
     this.editing = value;
     this.editRentalIndex = null as any;
   }
-
 }
