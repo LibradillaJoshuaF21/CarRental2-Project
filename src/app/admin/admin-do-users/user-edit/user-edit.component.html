@@ -49,14 +49,10 @@
                     class="form-control"
                     name="email"
                     formControlName="email"
-                    [ngClass]="{ 'is-invalid': f.email.errors && f.email.dirty }"
-                    [ngClass]="{ 'is-invalid': isDuplicate }"/>
+                    [ngClass]="{ 'is-invalid': f.email.errors && f.email.dirty }"/>
                     <div *ngIf="f.email.errors && f.email.dirty" class="invalid-feedback">
                         <div *ngIf="f.email.errors.required && f.email.dirty">Email Address is required</div>
                         <div *ngIf="f.email.errors.email && f.email.dirty">Entry must be an email</div>
-                    </div>
-                    <div *ngIf="isDuplicate" class="invalid-feedback">
-                        <div *ngIf="isDuplicate">Email Address already exists</div>
                     </div>
                 </div>
 
@@ -91,10 +87,6 @@
             </form>
             <button class="btn btn-dark" form="editUserForm" id="userAddButtonBox1" [disabled]="!editUserForm.valid">Edit</button>
             <button class="btn btn-light" id="userAddButtonBox2" (click)="stopEditing()">Cancel</button>
-            <hr>
-            <div>
-                <app-user-delete [sendUserID]="user.userID" (editStatus)="passEditStatus($event)"></app-user-delete>                
-            </div>
         </div>
     </div>
 </div>

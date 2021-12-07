@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CarsService } from 'src/app/shared/car/cars.service';
 import { Car } from 'src/app/shared/car/car';
+import { PopupService } from 'src/app/shared/notification/popup.service';
 
 @Component({
   selector: 'app-car-add',
@@ -28,7 +29,10 @@ export class CarAddComponent implements OnInit {
     }],
   })
 
-  constructor(private fb: FormBuilder, private cservice: CarsService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private cservice: CarsService,
+    private pop: PopupService,) { }
 
   ngOnInit(): void {
     
@@ -46,6 +50,7 @@ export class CarAddComponent implements OnInit {
     };
       this.cservice.addCar(payload);
       this.addCarForm.reset();
+      this.pop.carAdded();
   }
 
   get f(){

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CarsService } from 'src/app/shared/car/cars.service';
+import { PopupService } from 'src/app/shared/notification/popup.service';
 
 @Component({
   selector: 'app-car-delete',
@@ -11,7 +12,9 @@ export class CarDeleteComponent implements OnInit {
   @Input('sendCarID') carID!: string;
   @Output() editStatus = new EventEmitter<boolean>();
 
-  constructor(private cservice: CarsService ) { }
+  constructor(
+    private cservice: CarsService,
+    private pop: PopupService,) { }
 
   ngOnInit(): void {
     
@@ -19,6 +22,7 @@ export class CarDeleteComponent implements OnInit {
 
   onDelete(){
     this.cservice.removeCar(this.carID);
+    this.pop.carRemoved();
     this.editStatus.emit(false);
   }
 }

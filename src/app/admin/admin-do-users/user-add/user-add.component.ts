@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/user/users.service';
 import { User } from 'src/app/shared/user/user';
 import { AuthService } from 'src/app/shared/auth/auth.service';
+import { PopupService } from 'src/app/shared/notification/popup.service';
 
 @Component({
   selector: 'app-user-add',
@@ -38,7 +39,8 @@ export class UserAddComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private uservice: UsersService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private pop: PopupService) { }
 
   ngOnInit(): void {
     this.uservice.getUser().subscribe((val) => {
@@ -62,10 +64,9 @@ export class UserAddComponent implements OnInit {
       };
         this.uservice.addUser(payload);
         this.isDuplicate = false;
-
         this.authService.SignUp(userEmail, this.f.rpassword.value);
-
         this.addUserForm.reset();
+        this.pop.userRegistered();
     }
     else {
       this.isDuplicate = true;
