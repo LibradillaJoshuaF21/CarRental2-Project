@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/user/users.service';
 import { User } from 'src/app/shared/user/user';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-user-add',

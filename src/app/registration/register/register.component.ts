@@ -68,8 +68,6 @@ export class RegisterComponent implements OnInit {
         this.authService.SignUp(userEmail, this.f.rpassword.value);
 
         this.addUserForm.reset();
-
-        this.router.navigate(['']);
     }
     else {
       this.isDuplicate = true;
