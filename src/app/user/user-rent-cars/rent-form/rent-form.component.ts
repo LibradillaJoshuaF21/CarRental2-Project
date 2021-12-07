@@ -5,6 +5,7 @@ import { RentHistory } from 'src/app/shared/rent-history/history';
 import { HistoryService } from 'src/app/shared/rent-history/history.service';
 import { Rental } from 'src/app/shared/rental/rental';
 import { RentalsService } from 'src/app/shared/rental/rentals.service';
+import { PopupService } from 'src/app/shared/notification/popup.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class RentFormComponent implements OnInit {
 
   result = "Results Here";
   currentDate = new Date();
-  isNotRentable = false;
+  
 
   sent = false;
 
@@ -28,7 +29,11 @@ export class RentFormComponent implements OnInit {
 
   rentalList = [] as any;
 
-  constructor(private fb: FormBuilder, private rservice: RentalsService, private rhservice: HistoryService) { }
+  constructor(
+    private fb: FormBuilder,
+    private rservice: RentalsService, 
+    private rhservice: HistoryService,
+    private pop: PopupService) { }
 
   ngOnInit(): void {
     this.rservice.getRentalList().subscribe((val) => {
@@ -115,19 +120,18 @@ export class RentFormComponent implements OnInit {
         rentEndDate: this.f.rEndDate.value,
         rentStatus: truthValue,
       }
-      console.log(this.rservice.canRent(this.f.rStartDate.value, this.car.carID, this.rentalList));
-      console.log(this.f.rStartDate.value);
 
       if(this.rservice.canRent(this.f.rStartDate.value, this.car.carID, this.rentalList)){
         this.rservice.addRental(payload);
         this.rhservice.addRentHistory(payload2);
         this.rentStatus.emit(false);
+        this.pop.rentSuccess();
       }else{
-        console.log('Cannot Rent');
+        this.pop.alreadyRented();
       }
       
     } else {
-      this.isNotRentable = true;
+      this.pop.invalidDate();
     }
     this.sent = true;
 

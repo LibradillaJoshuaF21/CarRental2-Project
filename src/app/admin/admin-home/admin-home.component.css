@@ -1,0 +1,15 @@
+#main {
+    display: flex;
+    margin: 50px 0 0 100px ;
+    text-align: center;
+}
+
+#banner{
+    background-color: rgb(169, 222, 243);
+    background-image: url("src/assets/images/banner.jpg");
+    height: 10em;
+}
+
+.banner{
+    text-align: center;
+}
