@@ -2,7 +2,7 @@
     <div class="col-9">
         <app-view-rentals-list
              [sendRentalList]="rentalList"
-             [sendUserInfo]="userList[0]"
+             [sendUserInfo]="userList[userIndex]"
              (selectedRental)="onDetail($event)"
         ></app-view-rentals-list>
     </div>
@@ -11,9 +11,8 @@
             [sendUserRentalIndex]="detailRentalIndex"
             [sendRentalList]="rentalList"
             [sendCarList]="carList"
-            [sendUserInfo]="userList[0]"
+            [sendUserInfo]="userList[userIndex]"
             (detailStatus)="detailComplete($event)"
         ></app-view-rental-detail>
-        <p>RENTALS</p>
     </div>
 </div>

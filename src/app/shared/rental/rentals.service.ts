@@ -44,4 +44,24 @@ export class RentalsService {
   getUserRentalList(userID: string, rentalList: Rental[]){
     return rentalList.filter( rental => rental.userID === userID)
   }
+
+  canRent(startDate: any, carID: String, rentList: Rental[]){
+    let canRent = true;
+
+    let filteredList = [] as any;
+    let strDt = new Date(startDate).setHours(0,0,0,0);
+    strDt = new Date(strDt).getTime();
+
+    filteredList = rentList.filter(rental => rental.carID === carID);
+    filteredList.some(function(rental: any) {
+      let rentalSt = new Date(rental.rentStartDate).setHours(0,0,0,0);
+      rentalSt = new Date(rentalSt).getTime();
+      let rentalEd = new Date(rental.rentEndDate).setHours(0,0,0,0);
+      rentalEd = new Date(rentalEd).getTime();
+      if(strDt >= rentalSt && strDt <= rentalEd){
+        canRent = false;
+      }
+    });
+    return canRent;
+  }
 }

@@ -106,7 +106,7 @@ export class AuthService {
   storeEmail() {
     this.afAuth.authState.subscribe( user => {
       if (user) {
-        this.afs.collection('users').doc(user.uid).get().subscribe(result => {
+        this.afs.collection('users').doc(user!.uid).get().subscribe(result => {
           if (result) {
             localStorage.setItem('currentEmail', JSON.stringify(result.get('email')));
           }

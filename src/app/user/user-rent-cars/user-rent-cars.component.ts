@@ -33,14 +33,8 @@ export class UserRentCarsComponent implements OnInit {
     this.currentUserEmail = this.authService.userEmail;
   }
 
-  ngOnChanges() {
-
-  }
-
   onRent(index: any){
     this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
-    console.log(this.currentUserEmail);
-    console.log(this.userIndex);
     this.renting = true;
     this.rentCarIndex = index;
   }

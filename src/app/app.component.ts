@@ -17,7 +17,8 @@ export class AppComponent {
   }
 
   checkIfAdmin() {
-    return this.authService.isAdmin;
+    var checkRole = this.authService.isAdmin;
+    return checkRole;
   }
 
   checkIfLoggedIn() {

@@ -3,6 +3,7 @@ import { RentHistory } from 'src/app/shared/rent-history/history';
 import { HistoryService } from 'src/app/shared/rent-history/history.service';
 import { UsersService } from 'src/app/shared/user/users.service';
 import { CarsService } from 'src/app/shared/car/cars.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-user-view-history',
@@ -17,7 +18,10 @@ export class UserViewHistoryComponent implements OnInit {
   userList = [] as any;
   carList = [] as any;
 
-  constructor(private cservice: CarsService, private rhservice: HistoryService, private uservice: UsersService) { }
+  userIndex!: any;
+  currentUserEmail!: any;
+
+  constructor(private cservice: CarsService, private rhservice: HistoryService, private uservice: UsersService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.rhservice.getRentHistoryList().subscribe((val) => {
@@ -29,9 +33,16 @@ export class UserViewHistoryComponent implements OnInit {
     this.uservice.getUser().subscribe((val) => {
       this.userList = val;
     });
+    
+  }
+
+  ngDoCheck(){
+    this.currentUserEmail = this.authService.userEmail;
+    this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
   }
 
   onDetail(index: any){
+      
       this.detail = true;
       this.detailHistoryIndex = index;
   }
