@@ -28,27 +28,32 @@ export class CarListComponent implements OnInit {
     this.displayList = this.carList;
   }
 
-  onEdit(i: number){
-    this.selectedCar.emit(i);
+  onEdit(carID: number){
+    this.selectedCar.emit(carID);
   }
 
   onChangeBrand(event: any){
     this.displayList = this.cservice.sortByBrand(event.target.value, this.carList);
+    this.p = 1;
   }
 
   onChangeType(event: any){
     this.displayList = this.cservice.sortByType(event.target.value, this.carList);
+    this.p = 1;
   }
 
   onChangeTransmission(event: any){
     this.displayList = this.cservice.sortByTransmission(event.target.value, this.carList);
+    this.p = 1;
   }
 
   onChangeSeats(event: any){
     this.displayList = this.cservice.sortBySeats(event.target.value, this.carList);
+    this.p = 1;
   }
 
   displayAll(){
     this.displayList = this.carList;
+    this.p = 1;
   }
 }

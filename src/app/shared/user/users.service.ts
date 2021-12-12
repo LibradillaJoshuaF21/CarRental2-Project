@@ -44,4 +44,8 @@ export class UsersService {
   getUserIndex(userEmail: any, userList: User[]){
     return userList.findIndex( user => user.email == userEmail)
   } 
+
+  getSpecificUser(userID: string, userList: User[]){
+    return userList.find( user => user.userID === userID)
+  }
 }

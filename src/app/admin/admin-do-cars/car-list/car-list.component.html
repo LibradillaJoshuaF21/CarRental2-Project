@@ -21,7 +21,7 @@
                 <option value="SUV">SUV</option>
                 <option value="Minivan">Minivan</option>
                 <option value="Hatchback">Hatchback</option>
-                <option value="Pickup Truck">Pickup Truck</option>
+                <option value="Pickup">Pickup Truck</option>
             </select>
             <select class="filterBar" id="selectBox" (change)="onChangeTransmission($event)">
                 <option disabled selected value style="display:none"> Transmission </option>
@@ -60,10 +60,15 @@
                             </p>
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(i)">Edit</button>
+                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(car.carID)">Edit</button>
                         </div>
                     </div>
                 </div>
+        </div>
+    </div>
+    <div class="row">
+        <div style="margin: 50px;">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>
   </div>

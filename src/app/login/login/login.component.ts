@@ -41,9 +41,4 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.authService.SignIn(this.f.email.value,this.f.password.value)
   }
-
-  clearAll(){
-    this.authService.SignOut();
-  }
-
 }

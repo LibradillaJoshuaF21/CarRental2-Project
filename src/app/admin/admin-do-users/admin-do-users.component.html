@@ -7,7 +7,7 @@
     </div>
     <div clss="col" *ngIf="editing">
         <app-user-edit
-            [sendUserInfo]="userList[editUserIndex]"
+            [sendUserInfo]="selectedUSerInfo"
             (editStatus)="editComplete($event)"
         ></app-user-edit>
     </div>

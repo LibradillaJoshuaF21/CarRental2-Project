@@ -1,6 +1,6 @@
 <div class="container">
     <div class="card">   
-        <h2 class="card-header">Edit Account</h2>
+        <h2 class="card-header">Edit User</h2>
         <div class="card-body">
             <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()" id="editUserForm">
                 <div class="form-group">
@@ -49,6 +49,7 @@
                     class="form-control"
                     name="email"
                     formControlName="email"
+                    [readonly] = true
                     [ngClass]="{ 'is-invalid': f.email.errors && f.email.dirty }"/>
                     <div *ngIf="f.email.errors && f.email.dirty" class="invalid-feedback">
                         <div *ngIf="f.email.errors.required && f.email.dirty">Email Address is required</div>
@@ -77,6 +78,7 @@
                     class="form-control"
                     name="rpassword"
                     formControlName="rpassword"
+                    [readonly] = true
                     [ngClass]="{ 'is-invalid': f.rpassword.errors && f.rpassword.dirty}"/>
                     <div *ngIf="f.rpassword.errors && f.rpassword.dirty" class="invalid-feedback">
                         <div *ngIf="f.rpassword.errors.required && f.rpassword.dirty">Password is required</div>

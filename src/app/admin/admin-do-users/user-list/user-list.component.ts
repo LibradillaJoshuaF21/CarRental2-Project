@@ -20,8 +20,8 @@ export class UserListComponent implements OnInit {
 
   }
 
-  onEdit(i: number){
-    this.selectedUser.emit(i);
+  onEdit(userID: any){
+    this.selectedUser.emit(userID);
   }
 
 

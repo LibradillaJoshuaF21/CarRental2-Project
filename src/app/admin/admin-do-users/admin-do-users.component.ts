@@ -10,7 +10,7 @@ export class AdminDoUsersComponent implements OnInit {
 
   userList = [] as any;
   editing = false;
-  editUserIndex!: number;
+  selectedUSerInfo!: any;
 
   constructor(private uservice: UsersService) { }
 
@@ -20,14 +20,14 @@ export class AdminDoUsersComponent implements OnInit {
     });
   }
 
-  onEdit(index: any){
+  onEdit(userID: any){
     this.editing = true;
-    this.editUserIndex = index;
+    this.selectedUSerInfo = this.uservice.getSpecificUser(userID, this.userList);
   }
 
   editComplete(value: any){
     this.editing = value;
-    this.editUserIndex = null as any;
+    this.selectedUSerInfo = null as any;
   }
 
 }

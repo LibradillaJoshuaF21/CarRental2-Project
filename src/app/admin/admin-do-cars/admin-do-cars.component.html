@@ -10,7 +10,7 @@
     </div>
     <div clss="col" *ngIf="editing">
         <app-car-edit
-            [sendCarInfo]="carList[editCarIndex]"
+            [sendCarInfo]="selectedCarInfo"
             (editStatus)="editComplete($event)"
         ></app-car-edit>
     </div>
