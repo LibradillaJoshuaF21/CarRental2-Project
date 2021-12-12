@@ -34,6 +34,7 @@
             <button class="btn btn-light" id="userAddButtonBox2" (click)="onClose()">Close</button>
             <hr>
             <div>
+                <p *ngIf="cancel" style="color: red;"> Note: Can only cancel a week before rent date. </p>
                 <app-rental-cancel [sendRentalID]="userRentalList[rentalIndex].rentalID" [isCancellable]="cancel" (editStatus)="onCancelReservation($event)"></app-rental-cancel>
             </div>
         </div>

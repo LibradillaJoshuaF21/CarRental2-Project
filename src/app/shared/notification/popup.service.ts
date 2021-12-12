@@ -54,4 +54,8 @@ export class PopupService {
   emailNotFound(){
     alert("This email address does not exist.");
   };
+
+  rentCanceled(){
+    alert("Rent Canceled");
+  }
 }
