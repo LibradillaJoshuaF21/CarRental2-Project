@@ -13,12 +13,12 @@ export class UserViewRentalsComponent implements OnInit {
 
   rentalList = [] as any;
   detail = false;
-  detailRentalIndex!: number;
   userList = [] as any;
   carList = [] as any;
 
   userIndex!: any;
   currentUserEmail!: any;
+  selectedRentalDetail!: any;
 
   constructor(
     private cservice: CarsService, 
@@ -41,17 +41,16 @@ export class UserViewRentalsComponent implements OnInit {
   ngDoCheck(): void{
     this.currentUserEmail = this.authService.userEmail;
     this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
-    
   }
 
-  onDetail(index: any){
+  onDetail(rentalID: any){
     this.detail = true;
-    this.detailRentalIndex = index;
+    this.selectedRentalDetail = this.rservice.getSpecificRent(rentalID, this.rentalList);
   }
 
   detailComplete(value: any){
     this.detail = value;
-    this.detailRentalIndex = null as any;
+    this.selectedRentalDetail = null as any;
   }
 
 }

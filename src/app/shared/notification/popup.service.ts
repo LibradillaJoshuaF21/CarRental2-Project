@@ -7,14 +7,6 @@ export class PopupService {
 
   constructor() { }
 
-  userLogIn(){
-    alert("User Logged In.");
-  };
-
-  adminLogIn(){
-    alert("Admin Logged In.");
-  };
-
   logOut(){
     alert("Logged Out.");
   };

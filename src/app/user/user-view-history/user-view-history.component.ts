@@ -14,12 +14,13 @@ export class UserViewHistoryComponent implements OnInit {
 
   historyList = [] as any;
   detail = false;
-  detailHistoryIndex!: number;
   userList = [] as any;
   carList = [] as any;
 
   userIndex!: any;
   currentUserEmail!: any;
+  selectedRentalHistory!: any;
+
 
   constructor(private cservice: CarsService, private rhservice: HistoryService, private uservice: UsersService, private authService: AuthService) { }
 
@@ -41,15 +42,14 @@ export class UserViewHistoryComponent implements OnInit {
     this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
   }
 
-  onDetail(index: any){
-      
+  onDetail(rentalID: any){
       this.detail = true;
-      this.detailHistoryIndex = index;
+      this.selectedRentalHistory = this.rhservice.getSpecificRentHistory(rentalID, this.historyList);
   }
 
   detailComplete(value: any){
     this.detail = value;
-    this.detailHistoryIndex = null as any;
+    this.selectedRentalHistory = null as any;
   }
 
 

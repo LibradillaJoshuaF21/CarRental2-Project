@@ -1,65 +1,84 @@
 <div class="container">
-  <div class="box1">
-    <div class="card">
-      <h4 class="card-header">Renter Information</h4>
-      <div class="card-body">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item py-1 px-2">{{f.uFirstName.value + " " + f.uLastName.value}}</li>
-          <li class="list-group-item py-1 px-2">{{f.uAddress.value}}</li>
-          <li class="list-group-item py-1 px-2">{{f.uEmail.value}}</li>
-          <li class="list-group-item py-1 px-2">{{f.uContactNum.value}}</li>
-        </ul>
-      </div>
-    </div>
-    <br />
-    <div class="card">
-      <h4 class="card-header">Car Information</h4>
-      <div class="card-body">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item py-1 px-2">{{ f.cModel.value }}</li>
-          <li class="list-group-item py-1 px-2">{{ f.cBrand.value }}</li>
-          <li class="list-group-item py-1 px-2">{{ f.cType.value }}</li>
-          <li class="list-group-item py-1 px-2">{{ f.cTransmission.value }}</li>
-          <li class="list-group-item py-1 px-2">{{ f.cSeats.value + " Seats" }}</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="box2">
-    <div class="card">
-      <h4 class="card-header">Rent Duration</h4>
-      <div class="card-body">
-        <form id="rentForm" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label for="date">Start Date</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  name="rStartDate"
-                  formControlName="rStartDate"
-                />
-              </div>
+    <div class="box1">
+      <div class="card">   
+          <h4 class="card-header">Rent Information</h4>
+          <div class="card-body">
+            <div>
+              <label>Renter Name: </label>
+              <p>{{f.uFirstName.value + " " + f.uLastName.value}}</p>
             </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="date">End Date</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  name="rEndDate"
-                  formControlName="rEndDate"
-                />
-              </div>
+            <div>
+              <label>Renter Address: </label>
+              <p>{{f.uAddress.value}}</p>
+            </div>
+            <div>
+              <label>Renter Email: </label>
+              <p>{{f.uEmail.value}}</p>
+            </div>
+            <div>
+              <label>Renter Contact Number: </label>
+              <p>{{f.uContactNum.value}}</p>
+            </div>
+            <hr>
+            <div>
+              <label>Car Model: </label>
+              <p>{{ f.cModel.value }}</p>
+            </div>
+            <div>
+              <label>Car Brand: </label>
+              <p>{{ f.cBrand.value }}</p>
+            </div>
+            <div>
+              <label>Car Type: </label>
+              <p>{{ f.cType.value }}</p>
+            </div>
+            <div>
+              <label>Car Transmission: </label>
+              <p>{{ f.cTransmission.value }}</p>
+            </div>
+            <div>
+              <label>Car Seats: </label>
+              <p>{{ f.cSeats.value + " Seats" }}</p>
             </div>
           </div>
-        </form>
-        <button class="btn btn-dark" form="rentForm" id="buttonBox1">
-          Rent
-        </button>
       </div>
     </div>
-  </div>
+
+    <div class="box2">
+      <div class="card">
+        <h4 class="card-header">Rent Duration</h4>
+        <div class="card-body">
+          <form id="rentForm" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="date">Start Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="rStartDate"
+                    formControlName="rStartDate"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="date">End Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="rEndDate"
+                    formControlName="rEndDate"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-dark" form="rentForm" id="buttonBox1">
+            Rent
+          </button>
+        </div>
+      </div>
+    </div>
+
 </div>

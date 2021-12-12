@@ -31,8 +31,8 @@ export class ViewCarListComponent implements OnInit {
     this.displayList = this.rhservice.getUserHistoryList(this.userInfo.userID, this.historyList);
   }
 
-  onDetail(i: number){
-    this.selectedHistory.emit(i);
+  onDetail(rentID: any){
+    this.selectedHistory.emit(rentID);
   }
 
 }

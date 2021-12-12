@@ -10,7 +10,7 @@
                                 <span style="margin-right: 10px;">
                                     <i class="bi bi-truck"></i>
                                 </span>
-                                {{rent.carID}}
+                                {{rent.carModel}}
                             </h5>
                             <p>
                                 <span id="addMarginRight"><i class="bi bi-calendar-date-fill" style="margin-right: 5px;"></i>{{rent.rentStartDate}}</span>
@@ -21,14 +21,14 @@
                             </p>
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-dark" id="cardButtons" (click)="onDetail(i)">Details</button>
+                            <button class="btn btn-dark" id="cardButtons" (click)="onDetail(rent.rentalID)">Details</button>
                         </div>
                     </div>  
                 </div>
         </div>
     </div>
     <div class="row">
-        <div class="text-right">
+        <div style="margin: 50px;">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>

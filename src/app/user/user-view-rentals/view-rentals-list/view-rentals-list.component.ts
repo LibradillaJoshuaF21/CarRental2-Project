@@ -29,8 +29,8 @@ export class ViewRentalsListComponent implements OnInit {
     this.displayList = this.rservice.getUserRentalList(this.userInfo.userID, this.rentalList);
   }
 
-  onDetail(i: number){
-    this.selectedRental.emit(i);
+  onDetail(rentalID: any){
+    this.selectedRental.emit(rentalID);
   }
 
 }

@@ -64,4 +64,8 @@ export class RentalsService {
     });
     return canRent;
   }
+
+  getSpecificRent(rentalID: string, rentalList: Rental []){
+    return rentalList.find( rental => rental.rentalID === rentalID);
+  }
 }

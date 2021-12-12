@@ -5,17 +5,16 @@
             <div>
                 <label>Renter Information</label>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-1 px-2">{{userHistoryList[historyIndex].firstName+" " + userHistoryList[historyIndex].lastName}}</li>
-                    <li class="list-group-item py-1 px-2">{{userHistoryList[historyIndex].address}}</li>
-                    <li class="list-group-item py-1 px-2">{{userHistoryList[historyIndex].email}}</li>
-                    <li class="list-group-item py-1 px-2">{{userHistoryList[historyIndex].contactNumber}}</li>
+                    <li class="list-group-item py-1 px-2">{{HistoryDetail.firstName+" " + HistoryDetail.lastName}}</li>
+                    <li class="list-group-item py-1 px-2">{{HistoryDetail.address}}</li>
+                    <li class="list-group-item py-1 px-2">{{HistoryDetail.email}}</li>
+                    <li class="list-group-item py-1 px-2">{{HistoryDetail.contactNumber}}</li>
                 </ul>
             </div>
             <hr>
             <div>
                 <label>Car Information</label>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-1 px-2">{{specificCar.carID}}</li>
                     <li class="list-group-item py-1 px-2">{{specificCar.model}}</li>
                     <li class="list-group-item py-1 px-2">{{specificCar.brand}}</li>
                     <li class="list-group-item py-1 px-2">{{specificCar.type}}</li>
@@ -27,8 +26,8 @@
             <div>
                 <label>Rental Duration Information</label>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-1 px-2">{{userHistoryList[historyIndex].rentStartDate}}</li>
-                    <li class="list-group-item py-1 px-2">{{userHistoryList[historyIndex].rentEndDate}}</li>
+                    <li class="list-group-item py-1 px-2">{{HistoryDetail.rentStartDate}}</li>
+                    <li class="list-group-item py-1 px-2">{{HistoryDetail.rentEndDate}}</li>
                 </ul>
             </div>
         </div>

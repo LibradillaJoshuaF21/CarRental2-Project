@@ -10,7 +10,7 @@ import { RentalsService } from 'src/app/shared/rental/rentals.service';
 })
 export class ViewRentalDetailComponent implements OnInit {
 
-  @Input('sendUserRentalIndex') rentalIndex!: number;
+  @Input('sendRentalDetail') rentalDetail!: any;
   @Input('sendRentalList') rentalList!: Rental [];
   @Input('sendUserInfo') userInfo!: any;
   @Input('sendCarList') carList!: any;
@@ -30,9 +30,9 @@ export class ViewRentalDetailComponent implements OnInit {
 
   ngOnChanges(): void{
     this.userRentalList = this.rservice.getUserRentalList(this.userInfo.userID, this.rentalList)
-    this.specificCar = this.cservice.getSpecificCar(this.userRentalList[this.rentalIndex].carID, this.carList);
+    this.specificCar = this.cservice.getSpecificCar(this.rentalDetail.carID, this.carList);
 
-    var cancelDt = this.userRentalList[this.rentalIndex].rentStartDate;
+    var cancelDt = this.rentalDetail.rentStartDate;
     cancelDt = new Date(cancelDt);  
     cancelDt.setDate(cancelDt.getDate() - 7);
     cancelDt = new Date(cancelDt).setHours(0, 0, 0, 0);

@@ -14,16 +14,17 @@ export class AdminDoReservationsComponent implements OnInit {
   rentalList = [] as any;
   carList = [] as any;
   editing = false;
-  editRentalIndex!: number;
   userList = [] as any;
 
   userIndex!: any;
   currentUserEmail!: any;
+  selectedRentalInfo!: any;
 
   constructor(
     private rservice: RentalsService, 
     private cservice: CarsService, 
-    private uservice: UsersService,) { }
+    private uservice: UsersService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.rservice.getRentalList().subscribe((val) => {
@@ -37,13 +38,18 @@ export class AdminDoReservationsComponent implements OnInit {
     });
   }
 
-  onEdit(index: any){
+  ngDoCheck(): void{
+    this.currentUserEmail = this.authService.userEmail;
+    this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
+  }
+
+  onEdit(rentID: any){
     this.editing = true;
-    this.editRentalIndex = index;
+    this.selectedRentalInfo = this.rservice.getSpecificRent(rentID, this.rentalList);
   }
 
   editComplete(value: any){
     this.editing = value;
-    this.editRentalIndex = null as any;
+    this.selectedRentalInfo = null as any;
   }
 }

@@ -7,6 +7,7 @@ export interface Rental {
     email: string;
     contactNumber: number;
     carID: string;
+    carModel: string;
     rentStartDate: any;
     rentEndDate: any;
     rentStatus: boolean;

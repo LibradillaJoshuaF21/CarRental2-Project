@@ -32,4 +32,8 @@ export class HistoryService {
   getUserHistoryList(userID: string, historyList: RentHistory []){
     return historyList.filter( history => history.userID === userID)
   }
+
+  getSpecificRentHistory(rentalID: string, rentalList: RentHistory []){
+    return rentalList.find( rental => rental.rentID === rentalID);
+  }
 }

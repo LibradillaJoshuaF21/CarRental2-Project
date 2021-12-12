@@ -11,7 +11,7 @@ import { HistoryService } from 'src/app/shared/rent-history/history.service';
 })
 export class ViewDetailComponent implements OnInit {
 
-  @Input('sendUserHistoryIndex') historyIndex!: number;
+  @Input('sendHistoryDetail') HistoryDetail!: any;
   @Input('sendHistoryList') historyList!: RentHistory [];
   @Input('sendUserInfo') userInfo!: any;
   @Input('sendCarList') carList!: any;
@@ -28,7 +28,7 @@ export class ViewDetailComponent implements OnInit {
 
   ngOnChanges(): void{
     this.userHistoryList = this.rhservice.getUserHistoryList(this.userInfo.userID, this.historyList)
-    this.specificCar = this.cservice.getSpecificCar(this.userHistoryList[this.historyIndex].carID, this.carList); 
+    this.specificCar = this.cservice.getSpecificCar(this.HistoryDetail.carID, this.carList); 
   }
 
 }

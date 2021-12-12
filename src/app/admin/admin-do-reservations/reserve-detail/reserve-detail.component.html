@@ -32,7 +32,7 @@
                     <li class="list-group-item py-1 px-2">{{rentalInfo.rentEndDate}}</li>
                 </ul>
             </div>
-            <button class="btn btn-light" id="userAddButtonBox2" (click)="stopEditing()">Cancel</button>
+            <button class="btn btn-light" id="userAddButtonBox2" (click)="stopEditing()">Close</button>
             <hr>
             <div>
                 <app-reserve-delete [sendRentalID]="rentalInfo.rentalID" (editStatus)="passEditStatus($event)"></app-reserve-delete>

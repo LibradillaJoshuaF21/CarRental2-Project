@@ -5,17 +5,16 @@
             <div>
                 <label>Renter Information</label>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].firstName+" "+userRentalList[rentalIndex].lastName}}</li>
-                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].address}}</li>
-                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].email}}</li>
-                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].contactNumber}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalDetail.firstName+" "+rentalDetail.lastName}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalDetail.address}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalDetail.email}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalDetail.contactNumber}}</li>
                 </ul>
             </div>
             <hr>
             <div>
                 <label>Car Information</label>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-1 px-2">{{specificCar.carID}}</li>
                     <li class="list-group-item py-1 px-2">{{specificCar.model}}</li>
                     <li class="list-group-item py-1 px-2">{{specificCar.brand}}</li>
                     <li class="list-group-item py-1 px-2">{{specificCar.type}}</li>
@@ -27,15 +26,15 @@
             <div>
                 <label>Rental Duration Information</label>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].rentStartDate}}</li>
-                    <li class="list-group-item py-1 px-2">{{userRentalList[rentalIndex].rentEndDate}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalDetail.rentStartDate}}</li>
+                    <li class="list-group-item py-1 px-2">{{rentalDetail.rentEndDate}}</li>
                 </ul>
             </div>
             <button class="btn btn-light" id="userAddButtonBox2" (click)="onClose()">Close</button>
             <hr>
             <div>
                 <p *ngIf="cancel" style="color: red;"> Note: Can only cancel a week before rent date. </p>
-                <app-rental-cancel [sendRentalID]="userRentalList[rentalIndex].rentalID" [isCancellable]="cancel" (editStatus)="onCancelReservation($event)"></app-rental-cancel>
+                <app-rental-cancel [sendRentalID]="rentalDetail.rentalID" [isCancellable]="cancel" (editStatus)="onCancelReservation($event)"></app-rental-cancel>
             </div>
         </div>
     </div>

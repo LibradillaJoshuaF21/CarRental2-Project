@@ -79,7 +79,7 @@
               </p>
             </div>
             <div class="col-2">
-              <button class="btn btn-dark" id="cardButtons" (click)="onRent(i)">
+              <button class="btn btn-dark" id="cardButtons" (click)="onRent(car.carID)">
                 Rent
               </button>
             </div>
@@ -88,8 +88,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="text-right">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <div style="margin: 50px;">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
   </div>

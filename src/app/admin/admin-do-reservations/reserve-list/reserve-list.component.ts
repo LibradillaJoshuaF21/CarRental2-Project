@@ -26,8 +26,8 @@ export class ReserveListComponent implements OnInit {
   ngOnChanges():void{
   }
 
-  onEdit(i: number){
-    this.selectedRental.emit(i);
+  onEdit(rentID: any){
+    this.selectedRental.emit(rentID);
   }
 
 }

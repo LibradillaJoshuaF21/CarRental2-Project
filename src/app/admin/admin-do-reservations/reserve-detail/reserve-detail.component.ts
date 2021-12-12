@@ -10,7 +10,7 @@ import { Car } from 'src/app/shared/car/car';
 })
 export class ReserveDetailComponent implements OnInit {
 
-  @Input('sendRentalInfo') rentalInfo!: Rental;
+  @Input('sendRentalInfo') rentalInfo!: any;
   @Input('sendCarList') carList!: Car[];
   @Output() editStatus = new EventEmitter<boolean>();
 

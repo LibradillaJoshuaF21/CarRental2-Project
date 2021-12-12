@@ -1,5 +1,4 @@
 <div class="container">   
-    
     <div class="row">
         <div class="col-12 card"
                 *ngFor="let rent of rentalList | paginate: {itemsPerPage: count, currentPage: p } index as i;">
@@ -10,21 +9,18 @@
                                 <span style="margin-right: 10px;">
                                     <i class="bi bi-truck"></i>
                                 </span>
-                                {{rent.carID}}
+                                {{rent.carModel}}
                             </h5>
                             <p>
                                 <span id="addMarginRight"><i class="bi bi-calendar-date-fill" style="margin-right: 5px;"></i>{{rent.rentStartDate}}</span>
                                 <span id="addMarginRight">{{" | "}}</span><span class="addMarginRight">{{rent.rentEndDate}}</span>
-                            </p>
-                            <p>
-                                <span id="addMarginRight"><i class="bi bi-at" style="margin-right: 5px;"></i>{{rent.email}}</span>
                             </p>
                             <p class="card-text">
                                 <span id="addMarginRight"><i class="bi bi-house-fill" style="margin-right: 5px;"></i>{{rent.address}}</span>
                             </p>
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(rent.rentID)">Details</button>
+                            <button class="btn btn-dark" id="cardButtons" (click)="onEdit(rent.rentalID)">Details</button>
                         </div>
                     </div>  
                 </div>

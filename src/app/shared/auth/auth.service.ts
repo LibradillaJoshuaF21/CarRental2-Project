@@ -35,8 +35,7 @@ export class AuthService {
   SignIn(email: any, password: any) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
     .then (() => {
-      this.storeRole();
-      this.storeEmail();
+      this.storeRoleAndEmail();
     }).catch((error) => {
       window.alert(error.message);
     });
@@ -90,17 +89,16 @@ export class AuthService {
     })
   }
 
-  storeRole() {
+  storeRoleAndEmail() {
     this.afAuth.authState.subscribe( user => {
       if (user) {
         this.afs.collection('users').doc(user.uid).get().subscribe(result => {
           if (result) {
             localStorage.setItem('isAdmin', result.get('isAdmin'));
+            localStorage.setItem('currentEmail', JSON.stringify(result.get('email')));
             if(result.get('isAdmin')){
-              this.pop.adminLogIn();
               this.router.navigate(['admin']);
             } else {
-              this.pop.userLogIn();
               this.router.navigate(['user']);
             }
           }
@@ -108,17 +106,4 @@ export class AuthService {
       }
     })
   }
-
-  storeEmail() {
-    this.afAuth.authState.subscribe( user => {
-      if (user) {
-        this.afs.collection('users').doc(user!.uid).get().subscribe(result => {
-          if (result) {
-            localStorage.setItem('currentEmail', JSON.stringify(result.get('email')));
-          }
-        });
-      }
-    })
-  }
-
 }

@@ -12,7 +12,7 @@ export class UserRentCarsComponent implements OnInit {
 
   carList = [] as any;
   renting = false;
-  rentCarIndex!: number;
+  selectedCarInfo!: any;
   userList = [] as any;
 
   userIndex!: any;
@@ -33,15 +33,15 @@ export class UserRentCarsComponent implements OnInit {
     this.currentUserEmail = this.authService.userEmail;
   }
 
-  onRent(index: any){
+  onRent(carID: any){
     this.userIndex = this.uservice.getUserIndex(this.currentUserEmail, this.userList);
     this.renting = true;
-    this.rentCarIndex = index;
+    this.selectedCarInfo = this.selectedCarInfo = this.cservice.getSpecificCar(carID, this.carList);
   }
 
   rentComplete(value: any){
     this.renting = value;
-    this.rentCarIndex = null as any;
+    this.selectedCarInfo = null as any;
   }
 
 }

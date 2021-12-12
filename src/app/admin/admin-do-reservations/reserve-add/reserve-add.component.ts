@@ -104,6 +104,7 @@ export class ReserveAddComponent implements OnInit {
           email: this.userInfo.email,
           contactNumber: this.userInfo.contactNumber,
           carID: this.f.selectedCar.value,
+          carModel: this.carMod,
           rentStartDate: this.f.rStartDate.value,
           rentEndDate: this.f.rEndDate.value,
           rentStatus: truthValue,
